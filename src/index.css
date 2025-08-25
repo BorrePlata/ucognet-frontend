@@ -1,13 +1,89 @@
-body {
+/* Asegura que el contenedor principal abarque toda la altura de la ventana */
+html, body, #root {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Contenedor principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Ocupa todo el espacio entre el header y el footer */
+}
+
+/* Estilos para el header */
+header {
+  height: 60px; /* Altura del header */
+  background-color: #1E2149; /* Color del header */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Estilos para el footer */
+footer {
+  height: 60px; /* Altura del footer */
+  background-color: #1E2149; /* Color del footer */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinear elementos a los extremos */
+  padding: 0 20px;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+/* Contenido principal */
+.content {
+  flex: 1; /* Rellena el espacio disponible entre header y footer */
+  padding: 50px 20px; /* Espaciado interno del contenido */
+  overflow-y: auto; /* Habilita el scroll si el contenido excede la altura */
+  box-sizing: border-box;
+}
+
+/* Responsividad para dispositivos pequeños */
+@media (max-width: 768px) {
+  header {
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  footer {
+    height: 50px;
+    padding: 0 15px;
+  }
+
+  .content {
+    padding: 30px 15px; /* Ajusta el padding en móviles */
+  }
+}
+
+/* Estilos opcionales para el scroll en el contenido */
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #5E61F4; /* Color de la barra de scroll */
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-track {
+  background-color: #1E2149; /* Fondo del track de la barra de scroll */
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.CookieBanner {
+  animation: slideUp 0.5s ease-in-out;
 }

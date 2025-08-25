@@ -1,0 +1,21 @@
+(#) samuelplata@MacBook-Air-de-Samuel mi-template-robusto % ls
+README.md               build.zip               package-lock.json       public
+build                   node_modules            package.json            src
+(#) samuelplata@MacBook-Air-de-Samuel mi-template-robusto % cd src
+(#) samuelplata@MacBook-Air-de-Samuel src % ls
+App.css                 assets                  index.css               pages                   styles
+App.js                  components              index.js                reportWebVitals.js      theme.js
+App.test.js             context                 logo.svg                setupTests.js
+(#) samuelplata@MacBook-Air-de-Samuel src % cd components
+(#) samuelplata@MacBook-Air-de-Samuel components % ls
+AnimatedBackground.js   ContactForm.js          FullWidthBanner.js      Navbar.js               ServiceCard.js
+BlogSection.js          ChatBot.js              GyroAnimation.js        NewsletterSection.js    ServicesSection.js
+BubbleGallery.js        FloatingActionButton.js InfoCard.js             ProtectedRoute.js       Slideshow.js
+CTAButton.js            Footer.js               IntroductionSection.js  SectionTitle.js         templates
+(#) samuelplata@MacBook-Air-de-Samuel components % cd '/Users/samuelplata/Desktop/Escritorio/Animacion/Automatizacion_imagenes/E
+fficientAI/WEBAPP/mi-template-robusto/src/pages'
+(#) samuelplata@MacBook-Air-de-Samuel pages % ls  
+About.js                Consultoria.js          ChatBots.js             Home.js                 UnderConstruction.js
+AdminPanel.js           Contact.js              Formacion.js            Login.js                UserDashboard.js
+Blog.js                 ChatBotPage.js          Gallery.js              Mentorias.js
+(#) samuelplata@MacBook-Air-de-Samuel pages % 
