@@ -29,23 +29,17 @@ export default function Footer() {
             }}>
               A product of
             </Typography>
-            <Box sx={{
-              display: 'inline-flex', alignItems: 'center',
-              px: 1.5, py: 0.5,
-              borderRadius: '10px',
-              background: 'rgba(255,255,255,0.07)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              boxShadow: '0 2px 12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.08)',
-            }}>
-              <Box
-                component="img"
-                src="/Logo-Brainstream.png"
-                alt="Brainstream"
-                sx={{ height: 20, width: 'auto', display: 'block' }}
-              />
-            </Box>
+            <Box
+              component="img"
+              src="/logo-brainstream-blanco.png"
+              alt="Brainstream"
+              sx={{
+                height: 22, width: 'auto', display: 'block',
+                opacity: 0.7,
+                transition: 'opacity 0.3s ease',
+                '&:hover': { opacity: 1 },
+              }}
+            />
           </Box>
         </Box>
 

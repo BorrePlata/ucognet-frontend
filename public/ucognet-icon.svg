@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+      
+    <defs>
+      <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#07121B"/>
+        <stop offset="100%" stop-color="#0B1D2B"/>
+      </linearGradient>
+      <linearGradient id="uGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="#00C8FF"/>
+        <stop offset="100%" stop-color="#00E0C6"/>
+      </linearGradient>
+    </defs>
+    <rect x="64" y="64" width="896" height="896" rx="220" fill="url(#bgGrad)"/>
+    <rect x="64" y="64" width="896" height="896" rx="220" fill="none" stroke="#123047" stroke-width="10" opacity="0.55"/>
+    
+      
+        <path d="M 360 270 L 360 620 Q 360 760 512 760 Q 664 760 664 620 L 664 270" fill="none" stroke="url(#uGrad)" stroke-width="120"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- small routing notch (gap illusion) -->
+        <path d="M 360 270 L 360 310" fill="none" stroke="#07121B" stroke-width="62.400000000000006"
+              stroke-linecap="round" opacity="1"/>
+        <!-- evidence core -->
+        <polygon points="559.2,662.7 559.2,717.3 512.0,744.6 464.8,717.3 464.8,662.7 512.0,635.4" fill="#FF8A00"/>
+        
+    </svg>
