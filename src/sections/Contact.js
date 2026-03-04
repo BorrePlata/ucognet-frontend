@@ -34,14 +34,22 @@ export default function Contact() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   mb: 2,
                 }}>
-                  <Typography sx={{ fontWeight: 700, color: colors.accent, fontSize: '1.2rem' }}>SP</Typography>
+                  <Box
+                    component="img"
+                    src="/ucognet-icon.svg"
+                    alt="UCogNet"
+                    sx={{ width: 36, height: 36 }}
+                  />
                 </Box>
 
                 <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 0.5 }}>
-                  Samuel Plata
+                  UCogNet Lab
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 0.5, color: colors.textSecondary }}>
+                  orion@brainstream.pro
                 </Typography>
                 <Typography variant="body2" sx={{ mb: 2 }}>
-                  AI systems researcher. Building a metacognitive platform for safe self-improving agents.
+                  Metacognitive AI platform for safe self-improving agents.
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
                   {['Evidence-first design', 'Gated evolution', 'Audit-ready'].map((tag) => (

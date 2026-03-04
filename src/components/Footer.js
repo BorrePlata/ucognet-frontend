@@ -34,7 +34,7 @@ export default function Footer() {
               src="/logo-brainstream-blanco.png"
               alt="Brainstream"
               sx={{
-                height: 22, width: 'auto', display: 'block',
+                height: 30, width: 'auto', display: 'block',
                 opacity: 0.7,
                 transition: 'opacity 0.3s ease',
                 '&:hover': { opacity: 1 },
@@ -45,7 +45,7 @@ export default function Footer() {
 
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           {[
-            { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/in/samuelplata' },
+            { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/company/brainstream-pro' },
             { icon: <EmailIcon fontSize="small" />, href: 'mailto:orion@brainstream.pro' },
           ].map((s, i) => (
             <IconButton key={i} component="a" href={s.href} target="_blank" rel="noopener"

@@ -106,7 +106,7 @@ export default function Hero() {
                   to="/contact"
                   sx={{ px: 3.5 }}
                 >
-                  Contact Samuel
+                  Contact us
                 </Button>
               </Box>
 
@@ -124,7 +124,7 @@ export default function Hero() {
                   src="/logo-brainstream-blanco.png"
                   alt="Brainstream"
                   sx={{
-                    height: 28, width: 'auto', display: 'block',
+                    height: 38, width: 'auto', display: 'block',
                     opacity: 0.85,
                     transition: 'opacity 0.3s ease',
                     '&:hover': { opacity: 1 },
