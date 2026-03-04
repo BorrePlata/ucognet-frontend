@@ -5,6 +5,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { colors } from '../theme';
+import { ReactComponent as UCogNetIcon } from '../assets/ucognet_icon_A_U-Gate.svg';
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },
@@ -40,13 +41,17 @@ export default function Navbar() {
             to="/"
             sx={{ display: 'flex', alignItems: 'center', gap: 1.2, mr: 'auto', cursor: 'pointer', textDecoration: 'none' }}
           >
-            <Box sx={{
-              width: 32, height: 32, borderRadius: '8px',
-              background: colors.gradientAccent,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 800, fontSize: '0.9rem', color: '#fff',
-            }}>
-              U
+            <Box
+              sx={{
+                width: 36, height: 36, borderRadius: '10px',
+                overflow: 'hidden',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
+                '&:hover': { transform: 'rotate(15deg) scale(1.08)' },
+                '& svg': { width: '100%', height: '100%' },
+              }}
+            >
+              <UCogNetIcon />
             </Box>
             <Typography variant="h6" sx={{ fontWeight: 700, color: colors.textPrimary, fontSize: '1.05rem' }}>
               UCogNet

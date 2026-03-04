@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Container, Typography, IconButton } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import { colors } from '../theme';
@@ -52,9 +51,8 @@ export default function Footer() {
 
         <Box sx={{ display: 'flex', gap: 0.5 }}>
           {[
-            { icon: <GitHubIcon fontSize="small" />, href: 'https://github.com/ucognet' },
             { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/in/samuelplata' },
-            { icon: <EmailIcon fontSize="small" />, href: 'mailto:research@ucognet.ai' },
+            { icon: <EmailIcon fontSize="small" />, href: 'mailto:orion@brainstream.pro' },
           ].map((s, i) => (
             <IconButton key={i} component="a" href={s.href} target="_blank" rel="noopener"
               sx={{ color: colors.textSecondary, '&:hover': { color: colors.accent } }}

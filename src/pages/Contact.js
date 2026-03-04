@@ -205,7 +205,7 @@ export default function Contact() {
                         <EmailIcon sx={{ color: colors.secondary, fontSize: 20 }} />
                         <Box>
                           <Typography variant="caption" sx={{ color: colors.textSecondary }}>Email</Typography>
-                          <Typography variant="body2" sx={{ color: colors.textPrimary }}>research@ucognet.ai</Typography>
+                          <Typography variant="body2" sx={{ color: colors.textPrimary }}>orion@brainstream.pro</Typography>
                         </Box>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
