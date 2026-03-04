@@ -1,89 +1,105 @@
-/* Asegura que el contenedor principal abarque toda la altura de la ventana */
-html, body, #root {
-  height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #060B14;
+  color: #F0F4F8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(0,180,216,0.25); color: #fff; }
+a { text-decoration: none; color: inherit; }
+
+/* ─── Animated background grid ─── */
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-grid-bg::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background-image:
+    linear-gradient(rgba(0,180,216,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,216,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridDrift 25s linear infinite;
+}
+.hero-grid-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(0,180,216,0.07) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 40% at 80% 60%, rgba(0,119,182,0.04) 0%, transparent 50%);
+}
+
+@keyframes gridDrift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(60px, 60px); }
+}
+
+/* ─── Utility classes ─── */
+.accent-text { color: #00B4D8; }
+
+.proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,180,216,0.12);
+  background: rgba(0,180,216,0.04);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #7B8FA3;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.3s;
+}
+.proof-chip:hover {
+  border-color: rgba(0,180,216,0.25);
+}
+.proof-chip .num {
+  color: #00B4D8;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Section divider ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,180,216,0.12) 50%, transparent 100%);
+  border: none;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Contenedor principal */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1; /* Ocupa todo el espacio entre el header y el footer */
+/* ─── Image styles ─── */
+.section-img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(0,180,216,0.08);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s;
+}
+.section-img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 40px rgba(0,180,216,0.12);
 }
 
-/* Estilos para el header */
-header {
-  height: 60px; /* Altura del header */
-  background-color: #1E2149; /* Color del header */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Estilos para el footer */
-footer {
-  height: 60px; /* Altura del footer */
-  background-color: #1E2149; /* Color del footer */
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Alinear elementos a los extremos */
-  padding: 0 20px;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
-
-/* Contenido principal */
-.content {
-  flex: 1; /* Rellena el espacio disponible entre header y footer */
-  padding: 50px 20px; /* Espaciado interno del contenido */
-  overflow-y: auto; /* Habilita el scroll si el contenido excede la altura */
-  box-sizing: border-box;
-}
-
-/* Responsividad para dispositivos pequeños */
-@media (max-width: 768px) {
-  header {
-    height: 50px;
-    padding: 0 15px;
-  }
-
-  footer {
-    height: 50px;
-    padding: 0 15px;
-  }
-
-  .content {
-    padding: 30px 15px; /* Ajusta el padding en móviles */
-  }
-}
-
-/* Estilos opcionales para el scroll en el contenido */
-.content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.content::-webkit-scrollbar-thumb {
-  background-color: #5E61F4; /* Color de la barra de scroll */
-  border-radius: 4px;
-}
-
-.content::-webkit-scrollbar-track {
-  background-color: #1E2149; /* Fondo del track de la barra de scroll */
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.CookieBanner {
-  animation: slideUp 0.5s ease-in-out;
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }

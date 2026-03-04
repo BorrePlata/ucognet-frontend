@@ -1,0 +1,13 @@
+node_modules
+build
+.git
+.gitignore
+*.md
+*.zip
+*.txt
+Como-crear-seccion
+mapadelsitio
+deploy.sh
+generateBlogPosts.js
+setupProxy.js
+my-template-robusto.zip

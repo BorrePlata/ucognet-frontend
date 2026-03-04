@@ -1,114 +1,140 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, Box } from '@mui/material';
+import {
+  AppBar, Toolbar, Typography, Button, Box, IconButton, Drawer, List, ListItemButton, ListItemText, useScrollTrigger,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
-import { styled } from '@mui/system';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { colors } from '../theme';
-import logo from '../assets/logo.png';
 
-const NavbarContainer = styled(AppBar)({
-  background: 'rgba(0, 0, 0, 0.8)', // Fondo semitransparente para visibilidad
-  color: colors.textPrimary,
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.5)',
-  position: 'fixed',
-  top: 0,
-  width: '100%',
-  zIndex: 1000,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '60px',
-});
-
-const LogoContainer = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
-  textDecoration: 'none',
-  color: 'inherit',
-  flexGrow: 1,
-});
-
-const Logo = styled('img')({
-  height: '40px',
-  marginRight: '10px',
-});
-
-const NavLink = styled(Link)({
-  color: colors.textPrimary,
-  textDecoration: 'none',
-  fontSize: '1.1rem',
-  padding: '0 15px',
-  transition: 'color 0.3s ease',
-  display: 'flex',
-  alignItems: 'center',
-  height: '100%',
-  '&:hover': {
-    color: colors.secondary,
-  },
-});
-
-const NavLinksContainer = styled(Box)({
-  display: 'flex',
-  alignItems: 'center',
-  height: '100%',
-  '@media (max-width: 768px)': {
-    display: 'none',
-  },
-});
-
-const HamburgerButton = styled(IconButton)({
-  color: 'white', // Cambiar a un color visible
-  fontSize: '2rem', // Ajustar el tamaño
-  height: '100%',
-  padding: '10px',
-  zIndex: 1100,
-  '@media (min-width: 769px)': {
-    display: 'none',
-  },
-});
+const NAV_ITEMS = [
+  { label: 'Home', to: '/' },
+  { label: 'How it works', to: '/how-it-works' },
+  { label: 'Proof', to: '/proof' },
+  { label: 'Safety', to: '/safety' },
+  { label: 'Research', to: '/research' },
+  { label: 'Updates', to: '/updates' },
+  { label: 'Contact', to: '/contact' },
+];
 
 export default function Navbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
-
-  const menuItems = [
-    { label: 'Inicio', path: '/' },
-    { label: 'Consultoría', path: '/consultoria' },
-    { label: 'Formación', path: '/formacion' },
-    { label: 'ChatBots', path: '/chatbots' }, // Enlace a la página completa de ChatBots
-    { label: 'Mentorías', path: '/mentorias' },
-    { label: 'Quiénes Somos', path: '/about' },
-    { label: 'Contacto', path: '/contact' },
-    { label: 'CosmicMind', path: '/cosmicmind' },
-    //{ label: 'PanelVisionario', path: '/panelvisionario' },
-    //{ label: 'Galería', path: '/gallery' },
-    { label: 'Blog', path: '/blog' },
-  ];
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 40 });
+  const location = useLocation();
 
   return (
-    <NavbarContainer>
-      <Toolbar sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: '60px' }}>
-        <LogoContainer component={Link} to="/">
-          <Logo src={logo} alt="Logo" />
-        </LogoContainer>
-        <NavLinksContainer>
-          {menuItems.map((item, index) => (
-            <NavLink key={index} to={item.path}>{item.label}</NavLink>
+    <>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{
+          background: scrolled ? 'rgba(8,15,26,0.85)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          borderBottom: scrolled ? `1px solid ${colors.border}` : '1px solid transparent',
+          transition: 'all 0.3s ease',
+        }}
+      >
+        <Toolbar sx={{ maxWidth: 1200, width: '100%', mx: 'auto', px: { xs: 2, md: 3 } }}>
+          {/* Logo */}
+          <Box
+            component={RouterLink}
+            to="/"
+            sx={{ display: 'flex', alignItems: 'center', gap: 1.2, mr: 'auto', cursor: 'pointer', textDecoration: 'none' }}
+          >
+            <Box sx={{
+              width: 32, height: 32, borderRadius: '8px',
+              background: colors.gradientAccent,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontWeight: 800, fontSize: '0.9rem', color: '#fff',
+            }}>
+              U
+            </Box>
+            <Typography variant="h6" sx={{ fontWeight: 700, color: colors.textPrimary, fontSize: '1.05rem' }}>
+              UCogNet
+            </Typography>
+          </Box>
+
+          {/* Desktop nav */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5, mr: 2 }}>
+            {NAV_ITEMS.map((item) => {
+              const active = location.pathname === item.to;
+              return (
+                <Button
+                  key={item.label}
+                  component={RouterLink}
+                  to={item.to}
+                  sx={{
+                    color: active ? colors.accent : colors.textSecondary,
+                    fontSize: '0.85rem', fontWeight: active ? 600 : 500,
+                    '&:hover': { color: colors.textPrimary, background: 'transparent' },
+                  }}
+                >
+                  {item.label}
+                </Button>
+              );
+            })}
+          </Box>
+
+          {/* CTA buttons */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+            <Button
+              component={RouterLink}
+              to="/technical-note"
+              variant="outlined"
+              size="small"
+              sx={{ fontSize: '0.82rem', px: 2 }}
+            >
+              Technical note
+            </Button>
+            <Button
+              component={RouterLink}
+              to="/contact"
+              variant="contained"
+              size="small"
+              sx={{ fontSize: '0.82rem', px: 2 }}
+            >
+              Request a demo
+            </Button>
+          </Box>
+
+          {/* Mobile menu */}
+          <IconButton
+            onClick={() => setDrawerOpen(true)}
+            sx={{ display: { md: 'none' }, color: colors.textPrimary }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+
+      {/* Mobile drawer */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{ sx: { width: 260, background: colors.surface, borderLeft: `1px solid ${colors.border}` } }}
+      >
+        <List sx={{ pt: 4 }}>
+          {NAV_ITEMS.map((item) => (
+            <ListItemButton
+              key={item.label}
+              component={RouterLink}
+              to={item.to}
+              onClick={() => setDrawerOpen(false)}
+              selected={location.pathname === item.to}
+            >
+              <ListItemText primary={item.label} sx={{ '& .MuiListItemText-primary': { fontWeight: 500, fontSize: '0.95rem' } }} />
+            </ListItemButton>
           ))}
-        </NavLinksContainer>
-        <HamburgerButton edge="end" aria-label="menu" onClick={handleDrawerToggle}>
-          <MenuIcon />
-        </HamburgerButton>
-      </Toolbar>
-      <Drawer anchor="left" open={mobileOpen} onClose={handleDrawerToggle}>
-        <List>
-          {menuItems.map((item, index) => (
-            <ListItem button key={index} component={Link} to={item.path} onClick={handleDrawerToggle}>
-              <ListItemText primary={item.label} />
-            </ListItem>
-          ))}
+          <Box sx={{ px: 2, pt: 2, display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Button component={RouterLink} to="/technical-note" variant="outlined" size="small" fullWidth onClick={() => setDrawerOpen(false)}>
+              Technical note
+            </Button>
+            <Button component={RouterLink} to="/contact" variant="contained" size="small" fullWidth onClick={() => setDrawerOpen(false)}>
+              Request a demo
+            </Button>
+          </Box>
         </List>
       </Drawer>
-    </NavbarContainer>
+    </>
   );
 }
