@@ -83,7 +83,7 @@ export default function Problems() {
                     }}>
                       Problem
                     </Typography>
-                    <Typography variant="h5" sx={{
+                    <Typography variant="h5" component="h3" sx={{
                       color: colors.textPrimary, lineHeight: 1.4,
                       mb: 2.5, pb: 2.5,
                       borderBottom: `1px solid ${colors.border}`,

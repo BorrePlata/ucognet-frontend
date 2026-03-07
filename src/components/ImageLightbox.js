@@ -99,9 +99,36 @@ export function useLightbox() {
   return useContext(LightboxContext);
 }
 
-/** Clickable image wrapper — shows zoom icon on hover, opens lightbox on click */
-export default function ClickableImage({ src, alt, caption, sx, imgStyle, ...props }) {
+/* ── Known image dimensions (prevents CLS) ── */
+const IMAGE_DIMS = {
+  '/benchmarks/ucognet_01_test_coverage.png': [2352, 1127],
+  '/benchmarks/ucognet_02_regime_radar.png': [1859, 1591],
+  '/benchmarks/ucognet_03_confidence_signals.png': [3045, 1245],
+  '/benchmarks/ucognet_04_routing_heatmap.png': [1743, 1027],
+  '/benchmarks/ucognet_05_reward_composition.png': [2394, 1188],
+  '/benchmarks/ucognet_07_evidence_asymmetry.png': [2833, 1245],
+  '/benchmarks/ucognet_08_mutation_intensity.png': [3051, 1245],
+  '/benchmarks/ucognet_09_rollout_pipeline.png': [2610, 1624],
+  '/benchmarks/ucognet_11_architecture_pyramid.png': [2089, 1540],
+  '/benchmarks/ucognet_12_shaping_guardrails.png': [3053, 1245],
+  '/benchmarks/ucognet_14_integration_flow.png': [2430, 1371],
+  '/benchmarks/ucognet_15_capability_boundaries.png': [1748, 1492],
+  '/benchmarks/fig01_module_radar.png': [2649, 2246],
+  '/benchmarks/fig02_campaign_heatmap.png': [3059, 1677],
+  '/benchmarks/fig05_ablation_study.png': [2530, 1615],
+  '/benchmarks/fig06_energy_trajectories.png': [4770, 1527],
+  '/benchmarks/fig09_budget_pareto.png': [2278, 1647],
+  '/benchmarks/fig10_symbiosis_matrix.png': [2356, 1960],
+};
+
+/** Clickable image wrapper — shows zoom icon on hover, opens lightbox on click.
+ *  `priority` — set on the LCP / above-fold image to disable lazy-load & boost fetch priority.
+ */
+export default function ClickableImage({ src, alt, caption, sx, imgStyle, priority, ...props }) {
   const openLightbox = useLightbox();
+  const dims = IMAGE_DIMS[src];
+  const [w, h] = dims || [];
+  const webpSrc = src.endsWith('.png') ? src.replace('.png', '.webp') : null;
 
   return (
     <Box
@@ -116,17 +143,25 @@ export default function ClickableImage({ src, alt, caption, sx, imgStyle, ...pro
       }}
       {...props}
     >
-      <img
-        src={src}
-        alt={alt}
-        style={{
-          width: '100%',
-          display: 'block',
-          transition: 'transform 0.4s ease',
-          ...imgStyle,
-        }}
-        loading="lazy"
-      />
+      <picture>
+        {webpSrc && <source srcSet={webpSrc} type="image/webp" />}
+        <img
+          src={src}
+          alt={alt}
+          width={w}
+          height={h}
+          loading={priority ? undefined : 'lazy'}
+          decoding={priority ? 'sync' : 'async'}
+          fetchPriority={priority ? 'high' : undefined}
+          style={{
+            width: '100%',
+            height: 'auto',
+            display: 'block',
+            transition: 'transform 0.4s ease',
+            ...imgStyle,
+          }}
+        />
+      </picture>
       <Box
         className="zoom-overlay"
         sx={{

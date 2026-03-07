@@ -51,7 +51,7 @@ export default function Navbar() {
                 '& svg': { width: '100%', height: '100%' },
               }}
             >
-              <UCogNetIcon />
+              <UCogNetIcon aria-hidden="true" />
             </Box>
             <Typography variant="h6" sx={{ fontWeight: 700, color: colors.textPrimary, fontSize: '1.05rem' }}>
               UCogNet
@@ -59,7 +59,7 @@ export default function Navbar() {
           </Box>
 
           {/* Desktop nav */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5, mr: 2 }}>
+          <Box component="nav" aria-label="Main navigation" sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5, mr: 2 }}>
             {NAV_ITEMS.map((item) => {
               const active = location.pathname === item.to;
               return (
@@ -86,7 +86,7 @@ export default function Navbar() {
               to="/technical-note"
               variant="outlined"
               size="small"
-              sx={{ fontSize: '0.82rem', px: 2 }}
+              sx={{ fontSize: '0.82rem', px: 2, minHeight: 44 }}
             >
               Technical note
             </Button>
@@ -95,7 +95,7 @@ export default function Navbar() {
               to="/contact"
               variant="contained"
               size="small"
-              sx={{ fontSize: '0.82rem', px: 2 }}
+              sx={{ fontSize: '0.82rem', px: 2, minHeight: 44 }}
             >
               Request a demo
             </Button>
@@ -104,6 +104,7 @@ export default function Navbar() {
           {/* Mobile menu */}
           <IconButton
             onClick={() => setDrawerOpen(true)}
+            aria-label="Open navigation menu"
             sx={{ display: { md: 'none' }, color: colors.textPrimary }}
           >
             <MenuIcon />
@@ -116,6 +117,7 @@ export default function Navbar() {
         anchor="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
+        aria-label="Mobile navigation"
         PaperProps={{ sx: { width: 260, background: colors.surface, borderLeft: `1px solid ${colors.border}` } }}
       >
         <List sx={{ pt: 4 }}>

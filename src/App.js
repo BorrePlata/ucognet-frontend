@@ -1,5 +1,5 @@
-import React from 'react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import React, { Suspense, lazy } from 'react';
+import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
@@ -8,14 +8,16 @@ import { LightboxProvider } from './components/ImageLightbox';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
-import HowItWorksPage from './pages/HowItWorksPage';
-import ProofPage from './pages/ProofPage';
-import SafetyPage from './pages/SafetyPage';
-import ResearchPage from './pages/ResearchPage';
-import UpdatesPage from './pages/UpdatesPage';
-import ContactPage from './pages/ContactPage';
-import TechnicalNote from './pages/TechnicalNote';
+
+/* ── Code-split pages (reduces initial JS bundle ~83 KiB) ── */
+const HomePage = lazy(() => import('./pages/HomePage'));
+const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage'));
+const ProofPage = lazy(() => import('./pages/ProofPage'));
+const SafetyPage = lazy(() => import('./pages/SafetyPage'));
+const ResearchPage = lazy(() => import('./pages/ResearchPage'));
+const UpdatesPage = lazy(() => import('./pages/UpdatesPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const TechnicalNote = lazy(() => import('./pages/TechnicalNote'));
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -44,7 +46,9 @@ function App() {
         <Router>
           <ScrollToTop />
           <Navbar />
-          <AnimatedRoutes />
+          <Suspense fallback={<Box sx={{ minHeight: '100vh', background: '#060B14' }} />}>
+            <AnimatedRoutes />
+          </Suspense>
           <Footer />
         </Router>
       </LightboxProvider>

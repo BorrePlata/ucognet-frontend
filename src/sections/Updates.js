@@ -84,7 +84,7 @@ export default function Updates() {
                   }}>
                     {m.date}
                   </Typography>
-                  <Typography variant="h5" sx={{
+                  <Typography variant="h5" component="h3" sx={{
                     mt: 0.5, mb: 0.8, fontWeight: 600,
                     color: colors.textPrimary, fontSize: '1rem',
                   }}>

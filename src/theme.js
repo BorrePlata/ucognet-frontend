@@ -44,7 +44,7 @@ const theme = createTheme({
       styleOverrides: {
         root: { borderRadius: '8px', padding: '10px 24px', fontSize: '0.92rem', transition: 'all 0.25s ease' },
         containedPrimary: {
-          background: colors.gradientAccent,
+          background: 'linear-gradient(135deg, #0077B6 0%, #005F8A 100%)',
           color: '#fff',
           fontWeight: 700,
           boxShadow: '0 2px 12px rgba(0,180,216,0.2)',

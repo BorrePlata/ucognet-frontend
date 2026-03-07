@@ -197,7 +197,7 @@ export default function Contact() {
                     background: colors.surface,
                     border: `1px solid ${colors.border}`,
                   }}>
-                    <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
+                    <Typography variant="h5" component="h3" sx={{ mb: 3, fontWeight: 700 }}>
                       Quick Info
                     </Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
@@ -224,7 +224,7 @@ export default function Contact() {
                     background: `linear-gradient(135deg, rgba(0,229,255,0.03) 0%, rgba(124,77,255,0.03) 100%)`,
                     border: `1px solid ${colors.border}`,
                   }}>
-                    <Typography variant="h5" sx={{ mb: 3, fontWeight: 700 }}>
+                    <Typography variant="h5" component="h3" sx={{ mb: 3, fontWeight: 700 }}>
                       What We Offer
                     </Typography>
                     {[

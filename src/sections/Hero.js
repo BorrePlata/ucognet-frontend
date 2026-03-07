@@ -96,6 +96,7 @@ export default function Hero() {
                   variant="outlined"
                   href="/ucognet-one-pager.pdf"
                   target="_blank"
+                  rel="noopener noreferrer"
                   sx={{ px: 3.5 }}
                 >
                   Download one-pager
@@ -159,6 +160,7 @@ export default function Hero() {
                   src="/benchmarks/ucognet_11_architecture_pyramid.png"
                   alt="UCogNet Architecture Pyramid"
                   caption="UCogNet Architecture — 10y modular pyramid with metacognitive routing"
+                  priority
                 />
 
                 {/* Bottom label */}

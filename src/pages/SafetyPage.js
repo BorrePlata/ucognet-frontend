@@ -148,7 +148,7 @@ export default function SafetyPage() {
                     }}>
                       {p.icon}
                     </Box>
-                    <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 1.5, lineHeight: 1.3 }}>
+                    <Typography variant="h5" component="h3" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 1.5, lineHeight: 1.3 }}>
                       {p.title}
                     </Typography>
                     <Typography variant="body2" sx={{ lineHeight: 1.75 }}>
@@ -176,7 +176,7 @@ export default function SafetyPage() {
                   display: 'flex', flexDirection: 'column',
                 }}>
                   <Box sx={{ p: 3, borderBottom: `1px solid ${colors.border}` }}>
-                    <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary }}>
+                    <Typography variant="h5" component="h3" sx={{ fontWeight: 600, color: colors.textPrimary }}>
                       Shaping guardrails
                     </Typography>
                     <Typography variant="body2" sx={{ mt: 0.5 }}>
@@ -207,7 +207,7 @@ export default function SafetyPage() {
                   display: 'flex', flexDirection: 'column',
                 }}>
                   <Box sx={{ p: 3, borderBottom: `1px solid ${colors.border}` }}>
-                    <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary }}>
+                    <Typography variant="h5" component="h3" sx={{ fontWeight: 600, color: colors.textPrimary }}>
                       Capability boundaries
                     </Typography>
                     <Typography variant="body2" sx={{ mt: 0.5 }}>

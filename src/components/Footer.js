@@ -43,12 +43,13 @@ export default function Footer() {
           </Box>
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 0.5 }}>
+        <Box sx={{ display: 'flex', gap: 1 }}>
           {[
-            { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/company/brainstream-pro' },
-            { icon: <EmailIcon fontSize="small" />, href: 'mailto:orion@brainstream.pro' },
+            { icon: <LinkedInIcon fontSize="small" />, href: 'https://linkedin.com/company/brainstream-pro', label: 'LinkedIn' },
+            { icon: <EmailIcon fontSize="small" />, href: 'mailto:orion@brainstream.pro', label: 'Email us' },
           ].map((s, i) => (
-            <IconButton key={i} component="a" href={s.href} target="_blank" rel="noopener"
+            <IconButton key={i} component="a" href={s.href} target="_blank" rel="noopener noreferrer"
+              aria-label={s.label}
               sx={{ color: colors.textSecondary, '&:hover': { color: colors.accent } }}
             >
               {s.icon}

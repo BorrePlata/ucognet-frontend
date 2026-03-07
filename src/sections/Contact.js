@@ -42,7 +42,7 @@ export default function Contact() {
                   />
                 </Box>
 
-                <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 0.5 }}>
+                <Typography variant="h5" component="h3" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 0.5 }}>
                   UCogNet Lab
                 </Typography>
                 <Typography variant="body2" sx={{ mb: 0.5, color: colors.textSecondary }}>
@@ -93,7 +93,7 @@ export default function Contact() {
                   background: 'linear-gradient(90deg, transparent, rgba(0,180,216,0.3), transparent)',
                 }} />
 
-                <Typography variant="h5" sx={{ fontWeight: 600, mb: 3, color: colors.textPrimary }}>
+                <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 3, color: colors.textPrimary }}>
                   Request a demo or audit
                 </Typography>
 

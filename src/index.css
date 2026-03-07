@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* Google Fonts loaded via <link> in index.html (non-render-blocking) */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -80,18 +80,6 @@ a { text-decoration: none; color: inherit; }
   background: linear-gradient(90deg, transparent 0%, rgba(0,180,216,0.12) 50%, transparent 100%);
   border: none;
   margin: 0;
-}
-
-/* ─── Image styles ─── */
-.section-img {
-  width: 100%;
-  border-radius: 14px;
-  border: 1px solid rgba(0,180,216,0.08);
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s;
-}
-.section-img:hover {
-  transform: scale(1.01);
-  box-shadow: 0 8px 40px rgba(0,180,216,0.12);
 }
 
 @keyframes fadeInUp {

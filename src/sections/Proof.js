@@ -56,7 +56,7 @@ export default function Proof() {
                       Engineering
                     </Typography>
                   </Box>
-                  <Typography variant="h5" sx={{ fontWeight: 600, mb: 0.5, color: colors.textPrimary }}>
+                  <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 0.5, color: colors.textPrimary }}>
                     Engineering rigor
                   </Typography>
                   <Typography variant="body2">
@@ -100,7 +100,7 @@ export default function Proof() {
                       Safety
                     </Typography>
                   </Box>
-                  <Typography variant="h5" sx={{ fontWeight: 600, mb: 0.5, color: colors.textPrimary }}>
+                  <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 0.5, color: colors.textPrimary }}>
                     Safety guardrails
                   </Typography>
                   <Typography variant="body2">
@@ -136,7 +136,7 @@ export default function Proof() {
               background: 'linear-gradient(90deg, transparent, rgba(0,180,216,0.3), transparent)',
             }} />
 
-            <Typography variant="h5" sx={{ mb: 3, fontWeight: 600, color: colors.textPrimary }}>
+            <Typography variant="h5" component="h3" sx={{ mb: 3, fontWeight: 600, color: colors.textPrimary }}>
               Reproducibility contract
             </Typography>
             <Grid container spacing={2.5}>

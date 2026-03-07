@@ -74,7 +74,7 @@ export default function TechnicalNote() {
                 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1.5 }}>
                     <CheckCircleOutlineIcon sx={{ color: colors.accent, fontSize: 18 }} />
-                    <Typography variant="h5" sx={{ color: colors.textPrimary }}>{g.title}</Typography>
+                    <Typography variant="h5" component="h3" sx={{ color: colors.textPrimary }}>{g.title}</Typography>
                   </Box>
                   <Typography variant="body2">{g.desc}</Typography>
                 </Paper>

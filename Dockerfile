@@ -12,6 +12,10 @@ COPY public/ public/
 COPY src/ src/
 RUN npm run build
 
+# Convert benchmark PNGs to WebP (originals kept as fallback)
+RUN apk add --no-cache libwebp-tools && \
+    for f in build/benchmarks/*.png; do cwebp -q 82 "$f" -o "${f%.png}.webp" 2>/dev/null; done
+
 # ── Stage 2: Serve with nginx ──────────────────────────────
 FROM nginx:1.25-alpine
 

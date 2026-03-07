@@ -83,7 +83,7 @@ export default function ApplicationsPreview() {
                   }}>
                     {d.icon}
                   </Box>
-                  <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 1, lineHeight: 1.3 }}>
+                    <Typography variant="h5" component="h3" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 1, lineHeight: 1.3 }}>
                     {d.title}
                   </Typography>
                   <Typography variant="body2" sx={{ lineHeight: 1.7, flex: 1, mb: 2 }}>

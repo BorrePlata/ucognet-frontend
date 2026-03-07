@@ -90,7 +90,7 @@ export default function PlasmaResults() {
                 p: 3, borderRadius: '18px',
                 background: colors.surface, border: `1px solid ${colors.border}`,
               }}>
-                <Typography variant="h5" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 2.5 }}>
+                <Typography variant="h5" component="h3" sx={{ fontWeight: 600, color: colors.textPrimary, mb: 2.5 }}>
                   Cognitive Architecture
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -183,7 +183,7 @@ export default function PlasmaResults() {
                   px: 3, py: 2, borderBottom: `1px solid ${colors.border}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 }}>
-                  <Typography variant="h5" sx={{ fontWeight: 600, fontSize: '0.95rem' }}>
+                  <Typography variant="h5" component="h3" sx={{ fontWeight: 600, fontSize: '0.95rem' }}>
                     Post-Human Benchmark
                   </Typography>
                   <Typography variant="caption" sx={{

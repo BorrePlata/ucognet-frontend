@@ -150,7 +150,7 @@ export default function HowItWorks() {
                 borderRadius: '14px',
               }}>
                 <Box sx={{ px: 3, py: 2, borderBottom: `1px solid ${colors.border}` }}>
-                  <Typography variant="h5" sx={{ fontWeight: 600, fontSize: '0.95rem' }}>
+                  <Typography variant="h5" component="h3" sx={{ fontWeight: 600, fontSize: '0.95rem' }}>
                     Execution Modes
                   </Typography>
                 </Box>
