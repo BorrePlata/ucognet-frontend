@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PageTransition from '../components/PageTransition';
+import SEO from '../components/SEO';
 import { colors } from '../theme';
 
 const guarantees = [
@@ -25,6 +26,11 @@ const abGates = [
 export default function TechnicalNote() {
   return (
     <PageTransition>
+    <SEO
+      title="Technical Note — Reproducibility Guarantees"
+      description="UCogNet's reproducibility guarantees: frozen runs with SHA-256 hashes, per-item evidence logs, artifact indexing, cost tracking, and full auditability."
+      path="/technical-note"
+    />
     <Box sx={{ pt: 12, pb: 10 }}>
       <Container maxWidth="md">
         <motion.div

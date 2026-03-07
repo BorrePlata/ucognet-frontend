@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>UCogNet — Metacognitive AI Research</title>
+    <link>https://ucognet.pro</link>
+    <description>Research updates from the UCogNet metacognitive AI platform. Gated evolution, safety budgets, and reproducible benchmarks.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://ucognet.pro/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://ucognet.pro/ucognet-icon.svg</url>
+      <title>UCogNet</title>
+      <link>https://ucognet.pro</link>
+    </image>
+
+    <item>
+      <title>UCogNet Safety Architecture: 6 Pillars for Gated AI Evolution</title>
+      <link>https://ucognet.pro/safety</link>
+      <guid isPermaLink="true">https://ucognet.pro/safety</guid>
+      <pubDate>Thu, 06 Mar 2026 00:00:00 GMT</pubDate>
+      <description>How UCogNet enforces safe self-improvement through A/B gating, cognitive budgets, shaping guardrails, evidence architecture, capability boundaries, and reproducibility requirements.</description>
+      <dc:creator>UCogNet Lab</dc:creator>
+    </item>
+
+    <item>
+      <title>Plasma Research Results: THC and DMT Cognitive Modulation</title>
+      <link>https://ucognet.pro/research</link>
+      <guid isPermaLink="true">https://ucognet.pro/research</guid>
+      <pubDate>Wed, 05 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Experimental results from Plasma cognitive research showing THC modulation at 94.12% accuracy and DMT states at 98.53% accuracy with full reproducibility.</description>
+      <dc:creator>UCogNet Lab</dc:creator>
+    </item>
+
+    <item>
+      <title>UCogNet Architecture: Modular Metacognitive Platform</title>
+      <link>https://ucognet.pro/how-it-works</link>
+      <guid isPermaLink="true">https://ucognet.pro/how-it-works</guid>
+      <pubDate>Tue, 04 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Technical overview of UCogNet's 10-module architecture: cognitive routing, evidence-driven execution, and gated evolution under strict safety budgets.</description>
+      <dc:creator>UCogNet Lab</dc:creator>
+    </item>
+
+    <item>
+      <title>Benchmark Proof: 807 Reproducible Tests Across 10 Modules</title>
+      <link>https://ucognet.pro/proof</link>
+      <guid isPermaLink="true">https://ucognet.pro/proof</guid>
+      <pubDate>Mon, 03 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Frozen benchmark runs, reproducible test suites, and verifiable evidence from all 10 UCogNet cognitive modules.</description>
+      <dc:creator>UCogNet Lab</dc:creator>
+    </item>
+  </channel>
+</rss>

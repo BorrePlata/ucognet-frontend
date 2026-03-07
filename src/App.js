@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import theme from './theme';
 import { LightboxProvider } from './components/ImageLightbox';
 import ScrollToTop from './components/ScrollToTop';
@@ -36,6 +37,7 @@ function AnimatedRoutes() {
 
 function App() {
   return (
+    <HelmetProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <LightboxProvider>
@@ -47,6 +49,7 @@ function App() {
         </Router>
       </LightboxProvider>
     </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

@@ -23,20 +23,140 @@
     
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="canonical" href="https://ucognet.pro" />
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="UCogNet Research Updates" href="https://ucognet.pro/feed.xml" />
+    
+    <!-- AI-readable structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://ucognet.pro/#organization",
+          "name": "UCogNet Lab",
+          "url": "https://ucognet.pro",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://ucognet.pro/ucognet-icon.svg"
+          },
+          "description": "UCogNet is a modular metacognitive AI platform that routes tasks to the right solving mode, executes with verifiable evidence, and evolves via gated experiments under strict safety budgets.",
+          "parentOrganization": {
+            "@type": "Organization",
+            "name": "Brainstream",
+            "url": "https://brainstream.pro"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "orion@brainstream.pro",
+            "contactType": "research"
+          },
+          "sameAs": [
+            "https://linkedin.com/company/brainstream-pro",
+            "https://github.com/BorrePlata/ucognet-frontend"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ucognet.pro/#website",
+          "name": "UCogNet — Metacognitive AI Platform",
+          "url": "https://ucognet.pro",
+          "publisher": { "@id": "https://ucognet.pro/#organization" },
+          "description": "Research platform for modular metacognitive AI with gated evolution, safety budgets, and reproducible benchmarks.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ResearchProject",
+          "@id": "https://ucognet.pro/#project",
+          "name": "UCogNet",
+          "description": "A 10-module cognitive architecture that routes tasks to specialized solving modes, enforces safety via A/B gating and budgets, and produces frozen reproducible evidence for every decision.",
+          "url": "https://ucognet.pro",
+          "funder": { "@id": "https://ucognet.pro/#organization" },
+          "knowsAbout": [
+            "Metacognition",
+            "Cognitive Architecture",
+            "AI Safety",
+            "Gated Evolution",
+            "Reproducible Benchmarks",
+            "Self-Improving AI",
+            "Cognitive Routing",
+            "Evidence-Driven AI"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is UCogNet?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "UCogNet is a modular metacognitive AI platform with 10 cognitive modules that routes tasks to the right solving mode, executes with verifiable evidence, and evolves via gated experiments under strict safety budgets."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does UCogNet ensure AI safety?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "UCogNet enforces safety through 6 pillars: A/B gated evolution (new behaviors must outperform baselines), cognitive budgets (hard compute limits), shaping guardrails (reward boundaries), evidence architecture (every decision produces frozen audit trails), capability boundaries (explicit skill boundaries), and reproducibility requirements (all runs are frozen and replayable)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What benchmarks has UCogNet been tested on?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "UCogNet has 807 reproducible tests across 10 modules. All benchmark runs are frozen and replayable. Research includes cognitive modulation experiments with THC (94.12% accuracy) and DMT (98.53% accuracy) states."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is UCogNet open source?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "UCogNet follows an evidence-first approach. Technical documentation and benchmark data are available. Contact orion@brainstream.pro for research collaboration, licensing, or integration inquiries."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <title>UCogNet — Metacognitive AI That Improves Safely</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <article>
+        <h1>UCogNet — Metacognitive AI That Improves Safely</h1>
+        <p>UCogNet is a modular metacognitive AI platform with 10 cognitive modules that routes tasks to the right solving mode, executes with verifiable evidence, and evolves via gated experiments under strict safety budgets.</p>
+        <h2>Key Capabilities</h2>
+        <ul>
+          <li><strong>Cognitive Routing:</strong> Metacognitive task dispatch to specialized solving modes</li>
+          <li><strong>Gated Evolution:</strong> A/B tested changes must outperform baselines before promotion</li>
+          <li><strong>Safety Budgets:</strong> Hard compute and resource limits enforced per experiment</li>
+          <li><strong>Evidence Architecture:</strong> Every decision produces frozen, auditable evidence trails</li>
+          <li><strong>Reproducibility:</strong> 807 tests across 10 modules, all runs frozen and replayable</li>
+        </ul>
+        <h2>Research</h2>
+        <p>Plasma cognitive research: THC modulation at 94.12% accuracy, DMT states at 98.53% accuracy. All benchmarks reproducible.</p>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:orion@brainstream.pro">orion@brainstream.pro</a></p>
+        <p>A product of <a href="https://brainstream.pro">Brainstream</a>.</p>
+        <nav>
+          <a href="/how-it-works">How It Works</a> |
+          <a href="/proof">Proof</a> |
+          <a href="/safety">Safety</a> |
+          <a href="/research">Research</a> |
+          <a href="/updates">Updates</a> |
+          <a href="/contact">Contact</a> |
+          <a href="/technical-note">Technical Note</a>
+        </nav>
+      </article>
+    </noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

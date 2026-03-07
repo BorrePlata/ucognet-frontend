@@ -10,6 +10,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import BlockIcon from '@mui/icons-material/Block';
 import ClickableImage from '../components/ImageLightbox';
 import PageTransition from '../components/PageTransition';
+import SEO from '../components/SEO';
 import { colors } from '../theme';
 
 const pillars = [
@@ -62,6 +63,11 @@ const gates = [
 export default function SafetyPage() {
   return (
     <PageTransition>
+      <SEO
+        title="Safety — 6 Pillars for Gated AI Evolution"
+        description="How UCogNet enforces safe self-improvement: A/B gated evolution, cognitive budgets, shaping guardrails, evidence architecture, capability boundaries, and reproducibility."
+        path="/safety"
+      />
       <Box sx={{ pt: 14, pb: 10 }}>
         <Container maxWidth="lg">
           {/* Hero banner */}

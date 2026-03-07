@@ -3,6 +3,7 @@ import { Box, Container, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import ClickableImage from '../components/ImageLightbox';
 import PageTransition from '../components/PageTransition';
+import SEO from '../components/SEO';
 import { colors } from '../theme';
 
 const charts = [
@@ -119,6 +120,11 @@ const charts = [
 export default function ResearchPage() {
   return (
     <PageTransition>
+      <SEO
+        title="Research — Cognitive Modulation & Benchmark Visualizations"
+        description="Internal diagnostics, evaluation charts, and Plasma cognitive research results from UCogNet. THC modulation at 94.12% accuracy, DMT states at 98.53%."
+        path="/research"
+      />
       <Box sx={{ pt: 14, pb: 10 }}>
         <Container maxWidth="lg">
           <motion.div

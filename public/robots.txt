@@ -1,3 +1,30 @@
-# https://www.robotstxt.org/robotstxt.html
+# UCogNet — Metacognitive AI Platform
+# https://ucognet.pro
+
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://ucognet.pro/sitemap.xml
+
+# AI Crawlers — welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
