@@ -5,10 +5,22 @@ import { colors } from '../theme';
 
 const milestones = [
   {
+    date: 'Mar 2026',
+    title: 'BCI Benchmark — BNCI2014001 (9 subjects)',
+    desc: 'Cross-session evaluation on public dataset. Competitive accuracy vs CSP+LDA/SVM with 9/9 subject threshold pass and distinct representations via CKA.',
+    active: true,
+  },
+  {
+    date: 'Feb 2026',
+    title: 'Module 5 — Physics control across 5 OOD campaigns',
+    desc: 'Cognitive controller vs PID/LQR/Zero/Random with 3 seeds. Strongest differentiation under regime shifts (Campaign C: 0.351 vs PID 0.090).',
+    active: false,
+  },
+  {
     date: 'Feb 2026',
     title: 'Module 6 — Self-evolution engine integrated',
     desc: 'Gated mutations with gradual rollout and rollback.',
-    active: true,
+    active: false,
   },
   {
     date: 'Jan 2026',

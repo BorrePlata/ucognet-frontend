@@ -11,8 +11,15 @@ import { colors } from '../theme';
 const domains = [
   {
     icon: <BiotechIcon sx={{ fontSize: 28 }} />,
-    title: 'Fusion plasma control',
-    desc: 'Bio-inspired cognitive modules manage catastrophic plasma instabilities with 19% higher crisis survival than PPO baselines.',
+    title: 'Brain-computer interfaces',
+    desc: 'Competitive neural decoding on BNCI2014001 with representationally distinct features and robust subject coverage (9/9 threshold pass in 4-class).',
+    status: 'Active research',
+    statusColor: '#10b981',
+  },
+  {
+    icon: <PrecisionManufacturingIcon sx={{ fontSize: 28 }} />,
+    title: 'Physical control systems',
+    desc: 'Cognitive controller outperforms PID and LQR under out-of-distribution regime shifts in parametric physics simulations (Module 5, 5 OOD campaigns).',
     status: 'Active research',
     statusColor: '#10b981',
   },
@@ -24,16 +31,9 @@ const domains = [
     statusColor: colors.accent,
   },
   {
-    icon: <PrecisionManufacturingIcon sx={{ fontSize: 28 }} />,
-    title: 'Robotics & control',
-    desc: 'Metacognitive planning for embodied systems operating under real-world constraints and budget limits.',
-    status: 'Planned',
-    statusColor: colors.textSecondary,
-  },
-  {
     icon: <RocketLaunchIcon sx={{ fontSize: 28 }} />,
-    title: 'Critical infrastructure',
-    desc: 'Cognitive architectures for high-stakes environments where failure modes cascade and traditional controllers fall short.',
+    title: 'High-risk infrastructure',
+    desc: 'Cognitive architectures for high-stakes environments where failure modes cascade and classical controllers fall short.',
     status: 'Planned',
     statusColor: colors.textSecondary,
   },
@@ -52,7 +52,7 @@ export default function ApplicationsPreview() {
             Where UCogNet applies
           </Typography>
           <Typography variant="body1" sx={{ mb: 6, maxWidth: 520, mx: { md: 'auto' }, textAlign: { md: 'center' } }}>
-            A general cognitive platform, validated first in fusion plasma control and autonomous AI agents.
+            A general cognitive platform, validated in BCI decoding and parametric physics control.
           </Typography>
         </motion.div>
 

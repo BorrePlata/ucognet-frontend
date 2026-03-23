@@ -121,8 +121,8 @@ export default function ResearchPage() {
   return (
     <PageTransition>
       <SEO
-        title="Research — Cognitive Modulation & Benchmark Visualizations"
-        description="Internal diagnostics, evaluation charts, and Plasma cognitive research results from UCogNet. THC modulation at 94.12% accuracy, DMT states at 98.53%."
+        title="Research — Benchmark Results & Visualizations"
+        description="Internal diagnostics, evaluation charts, and benchmark results from UCogNet. BCI decoding on BNCI2014001 and parametric physics control across 5 OOD campaigns."
         path="/research"
       />
       <Box sx={{ pt: 14, pb: 10 }}>

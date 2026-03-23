@@ -11,7 +11,7 @@ export default function HomePage() {
     <PageTransition>
       <SEO
         title={null}
-        description="UCogNet is a modular metacognitive AI platform with gated evolution, safety budgets, and 807 reproducible tests across 10 cognitive modules. By Brainstream."
+        description="UCogNet is a modular metacognitive AI platform evaluated on BCI decoding (BNCI2014001, 9 subjects) and parametric physics control (5 OOD campaigns). Gated evolution, safety budgets, and reproducible benchmarks. By Brainstream."
         path="/"
       />
       <Hero />
