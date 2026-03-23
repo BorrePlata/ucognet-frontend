@@ -182,9 +182,9 @@ export default function TechnicalNote() {
 
           <Typography variant="body1" sx={{ mb: 6 }}>
             These are available under NDA for qualified partners and investors.
-            Contact <Box component="a" href="mailto:research@ucognet.ai"
+            Contact <Box component="a" href="mailto:orion@brainstream.pro"
               sx={{ color: colors.accent, '&:hover': { textDecoration: 'underline' } }}>
-              research@ucognet.ai
+              orion@brainstream.pro
             </Box> for access.
           </Typography>
 
@@ -192,7 +192,7 @@ export default function TechnicalNote() {
           <Button component={Link} to="/" variant="outlined" startIcon={<ArrowBackIcon />} sx={{ mr: 2 }}>
             Back to overview
           </Button>
-          <Button variant="contained" href="mailto:research@ucognet.ai?subject=Technical%20deep-dive%20request">
+          <Button variant="contained" href="mailto:orion@brainstream.pro?subject=Technical%20deep-dive%20request">
             Request full access
           </Button>
         </motion.div>

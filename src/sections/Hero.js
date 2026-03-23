@@ -70,8 +70,9 @@ export default function Hero() {
                 fontSize: { xs: '1rem', md: '1.12rem' },
                 lineHeight: 1.85,
               }}>
-                UCogNet is a modular cognitive platform that routes tasks to the right solving mode,
-                executes with verifiable evidence, and evolves via gated experiments under strict budgets.
+                <strong>UCogNet</strong> (Universal Cognition Network) is a modular cognitive platform that routes tasks
+                to the right solving mode, executes with verifiable evidence, and evolves via gated experiments
+                under strict budgets.
               </Typography>
 
               {/* Proof chips */}

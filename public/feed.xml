@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>UCogNet — Metacognitive AI Research</title>
+    <title>UCogNet (Universal Cognition Network) — Metacognitive AI Research</title>
     <link>https://ucognet.pro</link>
     <description>Research updates from the UCogNet metacognitive AI platform. Gated evolution, safety budgets, and reproducible benchmarks.</description>
     <language>en-us</language>
@@ -23,11 +23,11 @@
     </item>
 
     <item>
-      <title>Plasma Research Results: THC and DMT Cognitive Modulation</title>
+      <title>Benchmark Results: BCI Decoding and Physics Control</title>
       <link>https://ucognet.pro/research</link>
       <guid isPermaLink="true">https://ucognet.pro/research</guid>
-      <pubDate>Wed, 05 Mar 2026 00:00:00 GMT</pubDate>
-      <description>Experimental results from Plasma cognitive research showing THC modulation at 94.12% accuracy and DMT states at 98.53% accuracy with full reproducibility.</description>
+      <pubDate>Sun, 23 Mar 2026 00:00:00 GMT</pubDate>
+      <description>UCogNet evaluated on BNCI2014001 BCI decoding (9 subjects, cross-session, 9/9 threshold pass) and parametric physics control (Module 5, 5 OOD campaigns, cognitive 0.351 vs PID 0.090 under regime shifts).</description>
       <dc:creator>UCogNet Lab</dc:creator>
     </item>
 

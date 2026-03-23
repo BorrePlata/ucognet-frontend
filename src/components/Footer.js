@@ -17,7 +17,7 @@ export default function Footer() {
       }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, alignItems: { xs: 'center', sm: 'flex-start' } }}>
           <Typography variant="body2" sx={{ fontSize: '0.82rem' }}>
-            &copy; {new Date().getFullYear()} UCogNet Lab &mdash; Reproducible metacognitive AI.
+            &copy; {new Date().getFullYear()} UCogNet Lab &mdash; Universal Cognition Network.
           </Typography>
 
           {/* Powered by Brainstream */}

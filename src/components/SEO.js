@@ -2,8 +2,8 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SITE = 'https://ucognet.pro';
-const DEFAULT_TITLE = 'UCogNet — Metacognitive AI That Improves Safely';
-const DEFAULT_DESC = 'Modular metacognitive AI platform with gated evolution, safety budgets, and reproducible benchmarks. By Brainstream.';
+const DEFAULT_TITLE = 'UCogNet — Universal Cognition Network | Metacognitive AI That Improves Safely';
+const DEFAULT_DESC = 'UCogNet (Universal Cognition Network) is a modular metacognitive AI platform with gated evolution, safety budgets, and reproducible benchmarks for BCI and physical control. By Brainstream.';
 
 /**
  * Per-page SEO component. Renders <title>, meta description, canonical, OG, and Twitter tags.
@@ -29,11 +29,15 @@ export default function SEO({ title, description, path = '/', type = 'website' }
       <meta property="og:description" content={desc} />
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content="UCogNet" />
+      <meta property="og:site_name" content="UCogNet — Universal Cognition Network" />
+      <meta property="og:image" content={`${SITE}/benchmarks/ucognet_11_architecture_pyramid.png`} />
+      <meta property="og:image:alt" content="UCogNet Architecture Pyramid" />
 
       {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={desc} />
+      <meta name="twitter:image" content={`${SITE}/benchmarks/ucognet_11_architecture_pyramid.png`} />
     </Helmet>
   );
 }
