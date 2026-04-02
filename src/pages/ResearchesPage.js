@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Box, Container, Typography, Grid, Tabs, Tab, Button } from '@mui/material';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Box, Container, Typography, Grid, Button } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link as RouterLink } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import SEO from '../components/SEO';
@@ -475,10 +475,214 @@ function BCISection() {
 }
 
 /* ══════════════════════════════════════════════════════════
+   FLOATING NAV PILL
+   Appears on scroll, fades in/out, blur backdrop
+   ══════════════════════════════════════════════════════════ */
+const domains = [
+  { key: 0, icon: '⚡', label: 'Plasma', color: palette.physics },
+  { key: 1, icon: '🧠', label: 'BCI',    color: palette.bci },
+];
+
+function FloatingNav({ tab, setTab, visible }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.92 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.95 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+          style={{
+            position: 'fixed',
+            bottom: 28,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 1200,
+          }}
+        >
+          <Box sx={{
+            display: 'flex', gap: 0.5, p: 0.5,
+            borderRadius: '20px',
+            background: 'rgba(8,15,26,0.82)',
+            backdropFilter: 'blur(20px) saturate(1.6)',
+            WebkitBackdropFilter: 'blur(20px) saturate(1.6)',
+            border: `1px solid rgba(255,255,255,0.08)`,
+            boxShadow: '0 8px 40px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04) inset',
+          }}>
+            {domains.map((d) => {
+              const active = tab === d.key;
+              return (
+                <Box
+                  key={d.key}
+                  component="button"
+                  onClick={() => setTab(d.key)}
+                  sx={{
+                    display: 'flex', alignItems: 'center', gap: 0.8,
+                    px: { xs: 2, sm: 2.5 }, py: 1.2,
+                    borderRadius: '16px',
+                    border: 'none', cursor: 'pointer',
+                    background: active
+                      ? `${d.color}18`
+                      : 'transparent',
+                    transition: 'all 0.3s cubic-bezier(0.22,1,0.36,1)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&:hover': {
+                      background: active ? `${d.color}22` : 'rgba(255,255,255,0.05)',
+                    },
+                    '&:active': { transform: 'scale(0.96)' },
+                  }}
+                >
+                  {/* Active glow ring */}
+                  {active && (
+                    <motion.div
+                      layoutId="nav-glow"
+                      transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                      style={{
+                        position: 'absolute', inset: 0,
+                        borderRadius: 16,
+                        border: `1.5px solid ${d.color}60`,
+                        boxShadow: `0 0 16px ${d.color}30, inset 0 0 8px ${d.color}10`,
+                      }}
+                    />
+                  )}
+                  <Typography sx={{ fontSize: { xs: '1rem', sm: '1.1rem' }, lineHeight: 1, position: 'relative' }}>
+                    {d.icon}
+                  </Typography>
+                  <Typography sx={{
+                    fontSize: { xs: '0.78rem', sm: '0.85rem' },
+                    fontWeight: active ? 700 : 500,
+                    color: active ? d.color : 'rgba(255,255,255,0.55)',
+                    transition: 'color 0.3s',
+                    position: 'relative',
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {d.label}
+                  </Typography>
+                  {/* Pulse dot */}
+                  {active && (
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      style={{
+                        width: 6, height: 6, borderRadius: '50%',
+                        background: d.color,
+                        boxShadow: `0 0 8px ${d.color}`,
+                        position: 'relative',
+                        marginLeft: 2,
+                      }}
+                    />
+                  )}
+                </Box>
+              );
+            })}
+          </Box>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ── Inline header switcher (always visible at top) ── */
+function InlineNav({ tab, setTab }) {
+  return (
+    <Box sx={{
+      display: 'flex', gap: 1, mb: 5, flexWrap: 'wrap',
+    }}>
+      {domains.map((d) => {
+        const active = tab === d.key;
+        return (
+          <Box
+            key={d.key}
+            component="button"
+            onClick={() => setTab(d.key)}
+            sx={{
+              display: 'flex', alignItems: 'center', gap: 1,
+              px: { xs: 2.5, sm: 3 }, py: { xs: 1.2, sm: 1.5 },
+              borderRadius: '14px',
+              border: `1.5px solid ${active ? d.color + '50' : colors.border}`,
+              cursor: 'pointer',
+              background: active ? `${d.color}10` : colors.surface,
+              transition: 'all 0.35s cubic-bezier(0.22,1,0.36,1)',
+              position: 'relative',
+              overflow: 'hidden',
+              '&:hover': {
+                borderColor: `${d.color}40`,
+                background: `${d.color}08`,
+                transform: 'translateY(-1px)',
+              },
+              '&:active': { transform: 'scale(0.97)' },
+            }}
+          >
+            {active && (
+              <motion.div
+                layoutId="inline-indicator"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                style={{
+                  position: 'absolute', inset: 0,
+                  borderRadius: 14,
+                  background: `${d.color}08`,
+                  border: `1.5px solid ${d.color}40`,
+                }}
+              />
+            )}
+            <Typography sx={{ fontSize: '1.15rem', lineHeight: 1, position: 'relative' }}>
+              {d.icon}
+            </Typography>
+            <Box sx={{ position: 'relative' }}>
+              <Typography sx={{
+                fontSize: { xs: '0.82rem', sm: '0.92rem' },
+                fontWeight: active ? 700 : 500,
+                color: active ? d.color : colors.textSecondary,
+                transition: 'color 0.3s',
+              }}>
+                {d.key === 0 ? 'Plasma Turbulence Control' : 'BCI Neural Decoding'}
+              </Typography>
+              <Typography sx={{
+                fontSize: '0.65rem', fontWeight: 500,
+                color: active ? `${d.color}90` : colors.textSecondary,
+                transition: 'color 0.3s', mt: 0.2,
+              }}>
+                {d.key === 0 ? 'HW2D · 8 controllers · 6 seeds' : 'BNCI2014001 · 9 subjects · cross-session'}
+              </Typography>
+            </Box>
+            {active && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                style={{
+                  width: 8, height: 8, borderRadius: '50%',
+                  background: d.color, boxShadow: `0 0 10px ${d.color}`,
+                  position: 'relative', flexShrink: 0,
+                }}
+              />
+            )}
+          </Box>
+        );
+      })}
+    </Box>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════
    PAGE COMPONENT
    ══════════════════════════════════════════════════════════ */
 export default function ResearchesPage() {
   const [tab, setTab] = useState(0);
+  const [floatingVisible, setFloatingVisible] = useState(false);
+  const inlineRef = useRef(null);
+
+  /* Show floating nav when inline nav scrolls out of view */
+  const handleScroll = useCallback(() => {
+    if (!inlineRef.current) return;
+    const rect = inlineRef.current.getBoundingClientRect();
+    setFloatingVisible(rect.bottom < 0);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   return (
     <PageTransition>
@@ -487,75 +691,38 @@ export default function ResearchesPage() {
         description="Detailed benchmark results for UCogNet: Hasegawa-Wakatani 2D plasma turbulence control (8 controllers, 7D composite, 6 seeds) and BCI neural decoding (BNCI2014001, 9 subjects, cross-session)."
         path="/researches"
       />
+
+      {/* Floating bottom nav */}
+      <FloatingNav tab={tab} setTab={setTab} visible={floatingVisible} />
+
       <Box sx={{ pt: 14, pb: 10 }}>
         <Container maxWidth="lg">
           {/* Page header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Typography variant="h1" sx={{ mb: 1.5 }}>Researches</Typography>
-            <Typography variant="body1" sx={{ mb: 2, maxWidth: 680, fontSize: '1.08rem' }}>
+            <Typography variant="body1" sx={{ mb: 4, maxWidth: 680, fontSize: '1.08rem' }}>
               Detailed benchmark results across two scientific domains.
               Same cognitive architecture — rigorously evaluated with traceable, reproducible evidence.
             </Typography>
-            <Box sx={{ display: 'flex', gap: 1.5, mb: 5, flexWrap: 'wrap' }}>
-              <Typography variant="caption" sx={{
-                px: 1.5, py: 0.5, borderRadius: '8px',
-                background: `${palette.physics}08`, border: `1px solid ${palette.physics}25`,
-                color: palette.physics, fontSize: '0.72rem', fontWeight: 600,
-              }}>
-                ⚡ Plasma · 8 controllers · 6 seeds
-              </Typography>
-              <Typography variant="caption" sx={{
-                px: 1.5, py: 0.5, borderRadius: '8px',
-                background: `${palette.bci}08`, border: `1px solid ${palette.bci}25`,
-                color: palette.bci, fontSize: '0.72rem', fontWeight: 600,
-              }}>
-                🧠 BCI · 9 subjects · cross-session
-              </Typography>
-            </Box>
           </motion.div>
 
-          {/* Tabs */}
-          <Box sx={{ borderBottom: `1px solid ${colors.border}`, mb: 5 }}>
-            <Tabs
-              value={tab}
-              onChange={(_, v) => setTab(v)}
-              textColor="inherit"
-              TabIndicatorProps={{ sx: { background: tab === 0 ? palette.physics : palette.bci, height: 3, borderRadius: '3px 3px 0 0' } }}
-            >
-              <Tab
-                label={
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
-                    <Typography sx={{ fontSize: '1rem' }}>⚡</Typography>
-                    <Typography sx={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none' }}>
-                      Plasma Turbulence Control
-                    </Typography>
-                  </Box>
-                }
-                sx={{ color: tab === 0 ? palette.physics : colors.textSecondary, px: 3 }}
-              />
-              <Tab
-                label={
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8 }}>
-                    <Typography sx={{ fontSize: '1rem' }}>🧠</Typography>
-                    <Typography sx={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'none' }}>
-                      BCI Neural Decoding
-                    </Typography>
-                  </Box>
-                }
-                sx={{ color: tab === 1 ? palette.bci : colors.textSecondary, px: 3 }}
-              />
-            </Tabs>
+          {/* Inline domain switcher */}
+          <Box ref={inlineRef}>
+            <InlineNav tab={tab} setTab={setTab} />
           </Box>
 
-          {/* Content */}
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            {tab === 0 ? <PlasmaSection /> : <BCISection />}
-          </motion.div>
+          {/* Content with AnimatePresence */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={tab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {tab === 0 ? <PlasmaSection /> : <BCISection />}
+            </motion.div>
+          </AnimatePresence>
 
           {/* Bottom CTA */}
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
