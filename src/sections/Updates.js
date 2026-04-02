@@ -5,10 +5,28 @@ import { colors } from '../theme';
 
 const milestones = [
   {
+    date: 'Apr 2026',
+    title: 'Benchmark V3 — Plasma Turbulence Control (HW2D)',
+    desc: 'Full 8-controller benchmark on Hasegawa-Wakatani 2D (128×128) with 7D composite metric, 6-seed validation, and paired t-test. UCogNet Legacy ranks 2nd overall; Enhanced wins 3/6 seeds with best multi-seed mean (0.7219). Compared against 2026 SOTA: NeuOp-Transformer, FI-Conv, FNO Surrogate.',
+    active: true,
+  },
+  {
+    date: 'Apr 2026',
+    title: 'Researches page — dual-domain deep-dive',
+    desc: 'New /researches section with tabbed Plasma + BCI views. Full experimental protocol, simulation parameters, metric breakdowns, and peer-reviewed references for both domains.',
+    active: true,
+  },
+  {
+    date: 'Apr 2026',
+    title: 'Real-time learning pipeline',
+    desc: 'Continuous learning loop: harvest → should_train → LoRA fine-tune → deploy → hot-swap model. Autonomous background learning with rollback on Ψ_stable degradation. 16/16 tests pass.',
+    active: true,
+  },
+  {
     date: 'Mar 2026',
     title: 'BCI Benchmark — BNCI2014001 (9 subjects)',
     desc: 'Cross-session evaluation on public dataset. Competitive accuracy vs CSP+LDA/SVM with 9/9 subject threshold pass and distinct representations via CKA.',
-    active: true,
+    active: false,
   },
   {
     date: 'Feb 2026',
