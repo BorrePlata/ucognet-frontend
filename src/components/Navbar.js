@@ -12,7 +12,8 @@ const NAV_ITEMS = [
   { label: 'How it works', to: '/how-it-works' },
   { label: 'Proof', to: '/proof' },
   { label: 'Safety', to: '/safety' },
-  { label: 'Research', to: '/research' },
+  { label: 'Researches', to: '/researches' },
+  { label: 'Visualizations', to: '/research' },
   { label: 'Updates', to: '/updates' },
   { label: 'Contact', to: '/contact' },
 ];

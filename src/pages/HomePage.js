@@ -3,7 +3,7 @@ import PageTransition from '../components/PageTransition';
 import SEO from '../components/SEO';
 import Hero from '../sections/Hero';
 import Problems from '../sections/Problems';
-import PlasmaResults from '../sections/PlasmaResults';
+import ResearchHighlights from '../sections/ResearchHighlights';
 import ApplicationsPreview from '../sections/ApplicationsPreview';
 
 export default function HomePage() {
@@ -11,12 +11,12 @@ export default function HomePage() {
     <PageTransition>
       <SEO
         title={null}
-        description="UCogNet is a modular metacognitive AI platform evaluated on BCI decoding (BNCI2014001, 9 subjects) and parametric physics control (5 OOD campaigns). Gated evolution, safety budgets, and reproducible benchmarks. By Brainstream."
+        description="UCogNet is a modular metacognitive AI platform evaluated on plasma turbulence control (HW2D, 8 controllers, 7D composite) and BCI decoding (BNCI2014001, 9 subjects). Gated evolution, safety budgets, and reproducible benchmarks. By Brainstream."
         path="/"
       />
       <Hero />
       <Problems />
-      <PlasmaResults />
+      <ResearchHighlights />
       <ApplicationsPreview />
     </PageTransition>
   );

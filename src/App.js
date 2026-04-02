@@ -15,6 +15,7 @@ const HowItWorksPage = lazy(() => import('./pages/HowItWorksPage'));
 const ProofPage = lazy(() => import('./pages/ProofPage'));
 const SafetyPage = lazy(() => import('./pages/SafetyPage'));
 const ResearchPage = lazy(() => import('./pages/ResearchPage'));
+const ResearchesPage = lazy(() => import('./pages/ResearchesPage'));
 const UpdatesPage = lazy(() => import('./pages/UpdatesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const TechnicalNote = lazy(() => import('./pages/TechnicalNote'));
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
         <Route path="/proof" element={<ProofPage />} />
         <Route path="/safety" element={<SafetyPage />} />
         <Route path="/research" element={<ResearchPage />} />
+        <Route path="/researches" element={<ResearchesPage />} />
         <Route path="/updates" element={<UpdatesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/technical-note" element={<TechnicalNote />} />
