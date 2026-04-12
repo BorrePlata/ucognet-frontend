@@ -21,21 +21,21 @@ const palette = {
    ══════════════════════════════════════════════════════════ */
 
 const benchmarkRows = [
-  { rank: 1, name: 'FNO Surrogate',     ref: '[1]', score: '0.7187', spectral: '0.922', ours: false, tag: null },
-  { rank: 2, name: 'UCogNet Legacy',     ref: '',    score: '0.7253', spectral: '0.927', ours: true,  tag: null },
-  { rank: 3, name: 'NeuOp-Transformer',  ref: '[3]', score: '0.7293', spectral: '0.835', ours: false, tag: '2026' },
-  { rank: 4, name: 'FI-Conv',            ref: '[2]', score: '0.7347', spectral: '0.867', ours: false, tag: '2026' },
-  { rank: 5, name: 'UCogNet Enhanced',    ref: '',    score: '0.7435', spectral: '0.844', ours: true,  tag: null },
-  { rank: 6, name: 'UCogNet Ω',          ref: '',    score: '0.7490', spectral: '0.819', ours: true,  tag: '2026' },
-  { rank: 7, name: 'PID',                ref: '',    score: '0.7585', spectral: '0.822', ours: false, tag: null },
-  { rank: 8, name: 'MPC',                ref: '',    score: '0.7645', spectral: '0.789', ours: false, tag: null },
+  { rank: 1, name: 'FNO Surrogate',     ref: '[Li\'21]',   score: '0.7187', spectral: '0.922', ours: false, tag: null,   surrogate: true  },
+  { rank: 2, name: 'UCogNet Legacy',     ref: '',           score: '0.7253', spectral: '0.927', ours: true,  tag: null,   surrogate: false },
+  { rank: 3, name: 'NeuOp-Transformer',  ref: '[vdW\'26]',  score: '0.7293', spectral: '0.835', ours: false, tag: '2026', surrogate: true  },
+  { rank: 4, name: 'FI-Conv',            ref: '[Chen\'26]', score: '0.7347', spectral: '0.867', ours: false, tag: '2026', surrogate: true  },
+  { rank: 5, name: 'UCogNet Enhanced',    ref: '',           score: '0.7435', spectral: '0.844', ours: true,  tag: null,   surrogate: false },
+  { rank: 6, name: 'UCogNet Ω',          ref: '',           score: '0.7490', spectral: '0.819', ours: true,  tag: '2026', surrogate: false },
+  { rank: 7, name: 'PID',                ref: '',           score: '0.7585', spectral: '0.822', ours: false, tag: null,   surrogate: false },
+  { rank: 8, name: 'MPC',                ref: '',           score: '0.7645', spectral: '0.789', ours: false, tag: null,   surrogate: false },
 ];
 
 const multiSeedRows = [
-  { name: 'UCogNet Enhanced',  mean: '0.7219', std: '0.014', wins: '3/6', best: true },
-  { name: 'NeuOp-Transformer', mean: '0.7285', std: '0.005', wins: '0/6', best: false },
-  { name: 'UCogNet Legacy',    mean: '0.7311', std: '0.021', wins: '2/6', best: false },
-  { name: 'UCogNet Ω',         mean: '0.7400', std: '0.015', wins: '1/6', best: false },
+  { name: 'UCogNet Enhanced',  mean: '0.7219', ci: '0.015', wins: '3/6', best: true  },
+  { name: 'NeuOp-Transformer‡', mean: '0.7285', ci: '0.005', wins: '0/6', best: false },
+  { name: 'UCogNet Legacy',    mean: '0.7311', ci: '0.022', wins: '2/6', best: false },
+  { name: 'UCogNet Ω',         mean: '0.7400', ci: '0.016', wins: '1/6', best: false },
 ];
 
 const hwParams = [
@@ -60,34 +60,40 @@ const metricWeights = [
 ];
 
 const plasmaRefs = [
-  { id: '[1]', text: 'Li et al., "Fourier Neural Operator for Parametric PDEs," ICLR 2021.' },
-  { id: '[2]', text: 'Chen et al., "Frame-Independent Convolution for Turbulence," arXiv:2602.04287, 2026.' },
-  { id: '[3]', text: 'van de Wetering & Zhu, "Neural Operator Transformers for Modified HW," arXiv:2603.05730, 2026.' },
-  { id: '[4]', text: 'Hasegawa & Wakatani, "Plasma Edge Turbulence," Phys. Rev. Lett. 50:682, 1983.' },
-  { id: '[5]', text: 'Camargo et al., "Resistive drift-wave turbulence," Phys. Plasmas 2:48, 1995.' },
-  { id: '[6]', text: 'Ashourvan, "GKFieldFlow — Gyrokinetic Field Regression," arXiv:2601.02614, 2026.' },
+  { id: '[Li\'21]',   text: 'Li et al., "Fourier Neural Operator for Parametric PDEs," ICLR 2021.' },
+  { id: '[Chen\'26]', text: 'Chen et al., "Frame-Independent Convolution for Turbulence," arXiv:2602.04287, 2026. (surrogate approx.)' },
+  { id: '[vdW\'26]',  text: 'van de Wetering & Zhu, "Neural Operator Transformers for Modified HW," arXiv:2603.05730, 2026. (surrogate approx.)' },
+  { id: '[HW83]',     text: 'Hasegawa & Wakatani, "Plasma Edge Turbulence," Phys. Rev. Lett. 50:682, 1983.' },
+  { id: '[Ca95]',     text: 'Camargo et al., "Resistive drift-wave turbulence," Phys. Plasmas 2:48, 1995.' },
+  { id: '[Ash26]',    text: 'Ashourvan, "GKFieldFlow — Gyrokinetic Field Regression," arXiv:2601.02614, 2026.' },
+  { id: '[‡ note]',  text: 'Neural operator baselines (FNO, FI-Conv, NeuOp-Transformer) are analytical surrogate implementations matching the architectural families of the cited papers — not trained model checkpoints. Results cannot be directly compared to numbers in the cited papers without replication of their training.' },
 ];
 
 /* ══════════════════════════════════════════════════════════
    BCI NEURAL DECODING — BNCI2014001
-   9 subjects  ·  cross-session  ·  Motor Imagery
-   ══════════════════════════════════════════════════════════ */
+   Rigorous April 2026 run · 8 models · 9 subj × 5 seeds · 405 evaluations
+   ════════════════════════════════════════════════════════ */
 
 const bciRows = [
-  { name: 'CSP + LDA', acc2: '74.6 %', acc4: '58.1 %', pass4: '8/9', ours: false },
-  { name: 'CSP + SVM', acc2: '71.5 %', acc4: '55.5 %', pass4: '8/9', ours: false },
-  { name: 'UCogNet',   acc2: '73.7 %', acc4: '52.7 %', pass4: '9/9', ours: true },
+  { name: 'Riem-TS+LR',        acc: '76.0 %', ci: '±4.1 %', ours: false },
+  { name: 'Riem-MDM',           acc: '75.6 %', ci: '±4.1 %', ours: false },
+  { name: 'UCogNet-ResV2',      acc: '74.2 %', ci: '±4.5 %', ours: true  },
+  { name: 'CSP+LDA',            acc: '74.2 %', ci: '±4.4 %', ours: false },
+  { name: 'ShallowCNN',         acc: '73.7 %', ci: '±4.6 %', ours: false },
+  { name: 'UCogNet-Std',        acc: '71.8 %', ci: '±4.3 %', ours: true  },
+  { name: 'CSP+SVM',            acc: '71.5 %', ci: '±4.4 %', ours: false },
+  { name: 'EEGNet',             acc: '71.1 %', ci: '±4.5 %', ours: false },
 ];
 
 const bciDetails = [
-  { label: 'Dataset',    value: 'BNCI Horizon 2020 — 001-2014' },
-  { label: 'Paradigm',   value: '4-class motor imagery (left hand, right hand, feet, tongue)' },
-  { label: 'Subjects',   value: '9 healthy adults' },
-  { label: 'Sessions',   value: '2 per subject (cross-session evaluation)' },
-  { label: 'Channels',   value: '22 EEG electrodes, 250 Hz' },
-  { label: 'Threshold',  value: '4-class chance = 25 %; pass ≥ 40 %' },
-  { label: 'CKA',        value: 'Centered Kernel Alignment confirms distinct features per class' },
-  { label: 'Reference',  value: 'Tangermann et al., "Review of the BCI Competition IV," Front. Neurosci. 2012.' },
+  { label: 'Dataset',    value: 'BNCI2014001 (MOABB) — cross-session motor imagery EEG' },
+  { label: 'Paradigm',   value: '2-class motor imagery (left hand vs right hand)' },
+  { label: 'Subjects',   value: '9 healthy adults, 5 seeds each' },
+  { label: 'Protocol',   value: 'Train Session 1 → Test Session 2 (strict cross-session)' },
+  { label: 'Evaluations', value: '360 cross-session + 45 LOSO = 405 total' },
+  { label: 'Statistics', value: 'Wilcoxon paired signed-rank + Bootstrap 95% CI + Cliff’s δ' },
+  { label: 'Run ID',     value: '2026-04-12T16-01-38Z__bci_rigorous' },
+  { label: 'Reference',  value: 'Tangermann et al., “Review of BCI Competition IV,” Front. Neurosci. 2012.' },
 ];
 
 /* ── Reusable table component ── */
@@ -282,20 +288,21 @@ function PlasmaSection() {
             <CardFooter>
               <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
                 <Box component="span" sx={{ color: palette.ucognet }}>●</Box>{' '}
-                UCogNet Legacy ranks <strong style={{ color: colors.textPrimary }}>2nd overall</strong> with best
-                spectral fidelity (0.927), outperforming both 2026 neural operator baselines and classical controllers.
+                UCogNet Legacy ranks <strong style={{ color: colors.textPrimary }}>2nd on this single run (seed = 42)</strong> with highest
+                spectral fidelity (0.927). ✱ FNO, FI-Conv, NeuOp-Transformer are analytical surrogate implementations
+                — not trained model checkpoints from those papers. See multi-seed table for statistical summary.
               </Typography>
             </CardFooter>
           </Card>
 
           {/* Multi-seed table */}
           <Card sx={{ mb: 3 }}>
-            <CardHeader title="Multi-Seed Robustness" subtitle="6 seeds · paired t-test" subtitleColor={palette.warn} icon="🎲" />
+            <CardHeader title="Multi-Seed Robustness" subtitle="6 seeds · 95% CI (t-dist., n=6)" subtitleColor={palette.warn} icon="🎲" />
             <DataTable
               headers={[
                 { label: 'Controller' },
-                { label: 'Mean ± Std', style: { textAlign: 'right' } },
-                { label: 'Wins', style: { textAlign: 'right' } },
+                { label: 'Mean ± 95% CI', style: { textAlign: 'right' } },
+                { label: 'Wins',          style: { textAlign: 'right' } },
               ]}
               rows={multiSeedRows.map((r) => (
                 <tr key={r.name}>
@@ -318,7 +325,7 @@ function PlasmaSection() {
                     color: r.best ? palette.ucognet : colors.textSecondary,
                     fontWeight: r.best ? 700 : 400,
                   }}>
-                    {r.mean} ± {r.std}
+                    {r.mean} ± {r.ci}
                   </td>
                   <td style={{
                     textAlign: 'right', fontFamily: 'monospace',
@@ -335,9 +342,10 @@ function PlasmaSection() {
             <CardFooter>
               <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
                 <Box component="span" sx={{ color: palette.ucognet }}>●</Box>{' '}
-                UCogNet Enhanced achieves <strong style={{ color: colors.textPrimary }}>best mean (0.7219)</strong> and
-                wins 3/6 seeds — most robust across stochastic initial conditions.
-                Paired t-test Ω vs Legacy: t = −0.779, p = 0.471.
+                UCogNet Enhanced: lowest observed mean (0.7219 ± 0.015).
+                CIs overlap for all pairs; no pairwise difference is statistically
+                significant (e.g. Enhanced vs Legacy: t = −0.779, p = 0.471, n = 6).
+                Win count (3/6) is descriptive.
               </Typography>
             </CardFooter>
           </Card>
@@ -371,10 +379,10 @@ function BCISection() {
   return (
     <Box>
       <Typography variant="body1" sx={{ mb: 4, maxWidth: 720, fontSize: '1.05rem' }}>
-        Brain-Computer Interface (BCI) decoding translates neural signals into device commands.
-        We evaluate UCogNet on the public BNCI2014001 motor imagery dataset — the most widely used
-        benchmark in the BCI community, with 9 subjects performing 4-class imagined movements
-        across two recording sessions.
+        Brain-Computer Interface (BCI) decoding translates EEG signals into device commands.
+        We evaluate 8 decoder models on the public BNCI2014001 dataset
+        (9 subjects, 5 seeds, cross-session protocol) using Wilcoxon paired tests,
+        Bootstrap 95% CI, and Cliff’s delta effect sizes — 405 total evaluations.
       </Typography>
 
       <Grid container spacing={3}>
@@ -404,13 +412,12 @@ function BCISection() {
         <Grid item xs={12} md={7}>
           {/* Full BCI table */}
           <Card sx={{ mb: 3 }}>
-            <CardHeader title="Classification Results" subtitle="Cross-session" subtitleColor={palette.bci} icon="📊" />
+            <CardHeader title="Classification Results" subtitle="8 models · 9 subj × 5 seeds · Apr 2026" subtitleColor={palette.bci} icon="📊" />
             <DataTable
               headers={[
                 { label: 'Method' },
-                { label: '2-class acc.', style: { textAlign: 'right' } },
-                { label: '4-class acc.', style: { textAlign: 'right' } },
-                { label: '4-class pass', style: { textAlign: 'right' } },
+                { label: 'Bal. Accuracy', style: { textAlign: 'right' } },
+                { label: '95% CI',        style: { textAlign: 'right' } },
               ]}
               rows={bciRows.map((r) => (
                 <tr key={r.name}>
@@ -419,9 +426,13 @@ function BCISection() {
                     fontWeight: r.ours ? 700 : 400,
                   }}>
                     {r.name}
+                    {r.ours && (
+                      <Box component="span" sx={{
+                        ml: 0.8, px: 0.6, py: 0.1, borderRadius: '4px', fontSize: '0.56rem',
+                        fontWeight: 700, background: `${palette.bci}20`, color: palette.bci,
+                      }}>ours</Box>
+                    )}
                   </td>
-                  <td style={{ textAlign: 'right', color: colors.textSecondary }}>{r.acc2}</td>
-                  <td style={{ textAlign: 'right', color: colors.textSecondary }}>{r.acc4}</td>
                   <td style={{
                     textAlign: 'right', fontFamily: 'monospace',
                     color: r.ours ? palette.bci : colors.textSecondary,
@@ -429,17 +440,19 @@ function BCISection() {
                     background: r.ours ? `${palette.bci}10` : 'transparent',
                     borderRadius: r.ours ? '6px' : 0,
                   }}>
-                    {r.pass4}
+                    {r.acc}
                   </td>
+                  <td style={{ textAlign: 'right', fontFamily: 'monospace', fontSize: '0.78rem', color: colors.textSecondary }}>{r.ci}</td>
                 </tr>
               ))}
             />
             <CardFooter>
               <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
                 <Box component="span" sx={{ color: palette.bci }}>●</Box>{' '}
-                UCogNet achieves <strong style={{ color: colors.textPrimary }}>9/9 subject pass</strong> in 4-class
-                motor imagery — only method where every subject exceeds the 40 % threshold.
-                CKA analysis confirms representationally distinct learned features per class.
+                UCogNet-ResV2 <strong style={{ color: colors.textPrimary }}>rank 3 of 8 (74.2 ± 4.5 %)</strong>,
+                statistically tied with CSP+LDA (Wilcoxon p = 0.97);
+                significantly outperforms CSP+SVM (p = 0.006) and trends vs EEGNet (p = 0.088).
+                Riemannian methods rank 1st–2nd; UCogNet is top neural / cognitive approach.
               </Typography>
             </CardFooter>
           </Card>
@@ -452,10 +465,10 @@ function BCISection() {
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
                 {[
-                  { icon: '✅', text: 'Robustness: all 9 subjects pass the 4-class threshold (vs 8/9 for both CSP baselines). UCogNet handles inter-subject neural variability better.' },
-                  { icon: '🔍', text: 'Feature quality: CKA (Centered Kernel Alignment) shows that UCogNet\'s learned representations are more class-separable than CSP spatial filters.' },
-                  { icon: '📈', text: '2-class competitive: 73.7 % accuracy, within 1 % of CSP+LDA (74.6 %). The cognitive overhead pays off in multi-class robustness.' },
-                  { icon: '🔄', text: 'Cross-session: evaluated across separate recording sessions (not within-session), testing generalization across daily neural variability.' },
+                  { icon: '🧐', text: 'Rank 3 of 8: UCogNet-ResV2 achieves 74.2 ± 4.5 % balanced accuracy, statistically tied with CSP+LDA (Wilcoxon p = 0.97). No significant difference from top-2 Riemannian methods.' },
+                  { icon: '📊', text: 'Statistical rigour: Wilcoxon paired tests, Bootstrap 5000-resample 95 % CI, and Cliff’s delta effect sizes across 9 × 5 = 45 paired observations.' },
+                  { icon: '⚡', text: 'Outperforms classical: significantly better than CSP+SVM (p = 0.006, medium effect). Trend vs EEGNet (p = 0.088): 1.6 pp advantage with overlapping CIs.' },
+                  { icon: '🔄', text: 'Cross-session: strict protocol (Train Session 1 → Test Session 2) tests day-to-day neural variability generalisation — same architecture, no task-specific tuning.' },
                 ].map((f, i) => (
                   <Box key={i} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
                     <Typography sx={{ fontSize: '0.85rem', mt: '1px' }}>{f.icon}</Typography>
@@ -643,7 +656,7 @@ function InlineNav({ tab, setTab }) {
                 color: active ? `${d.color}90` : colors.textSecondary,
                 transition: 'color 0.3s', mt: 0.2,
               }}>
-                {d.key === 0 ? 'HW2D · 8 controllers · 6 seeds' : 'BNCI2014001 · 9 subjects · cross-session'}
+                {d.key === 0 ? 'HW2D · 8 controllers · 6 seeds' : 'BNCI2014001 · 8 models · 9 subj×5 seeds'}
               </Typography>
             </Box>
             {active && (
@@ -688,7 +701,7 @@ export default function ResearchesPage() {
     <PageTransition>
       <SEO
         title="Researches — Plasma Turbulence & BCI Benchmarks"
-        description="Detailed benchmark results for UCogNet: Hasegawa-Wakatani 2D plasma turbulence control (8 controllers, 7D composite, 6 seeds) and BCI neural decoding (BNCI2014001, 9 subjects, cross-session)."
+        description="Detailed benchmark results for UCogNet: Hasegawa-Wakatani 2D plasma turbulence control (8 controllers, 7D composite, 6 seeds, surrogate baselines disclosed) and BCI neural decoding (BNCI2014001, 8 models, 9 subjects × 5 seeds, 405 evals, Wilcoxon + Bootstrap 95% CI)."
         path="/researches"
       />
 
