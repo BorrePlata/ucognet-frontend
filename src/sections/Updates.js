@@ -6,6 +6,12 @@ import { colors } from '../theme';
 const milestones = [
   {
     date: 'Apr 2026',
+    title: 'BCI Rigorous Benchmark — 8 models, 405 evaluations',
+    desc: 'Full multi-objective evaluation: 9 subjects × 5 seeds × 8 models = 360 cross-session + 45 LOSO. Riem-TS+LR tops at 76.0%; UCogNet-ResV2 ranks 3rd (74.2%, p=0.97 vs CSP+LDA). Wilcoxon paired tests, 95% CI, Cliff\'s delta effect sizes.',
+    active: true,
+  },
+  {
+    date: 'Apr 2026',
     title: 'Benchmark V3 — Plasma Turbulence Control (HW2D)',
     desc: 'Full 8-controller benchmark on Hasegawa-Wakatani 2D (128×128) with 7D composite metric, 6-seed validation, and paired t-test. UCogNet Legacy ranks 2nd overall; Enhanced wins 3/6 seeds with best multi-seed mean (0.7219). Compared against 2026 SOTA: NeuOp-Transformer, FI-Conv, FNO Surrogate.',
     active: true,
@@ -24,8 +30,8 @@ const milestones = [
   },
   {
     date: 'Mar 2026',
-    title: 'BCI Benchmark — BNCI2014001 (9 subjects)',
-    desc: 'Cross-session evaluation on public dataset. Competitive accuracy vs CSP+LDA/SVM with 9/9 subject threshold pass and distinct representations via CKA.',
+    title: 'BCI Benchmark — BNCI2014001 (preliminary)',
+    desc: 'Initial cross-session evaluation. Superseded by Apr 2026 rigorous run (8 models, 5 seeds, Wilcoxon tests).',
     active: false,
   },
   {

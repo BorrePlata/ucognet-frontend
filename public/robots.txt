@@ -7,6 +7,9 @@ Allow: /
 # Sitemap
 Sitemap: https://ucognet.pro/sitemap.xml
 
+# LLMs.txt — AI-readable plain-text summary of UCogNet (EN/ES/PT)
+# https://ucognet.pro/llms.txt
+
 # AI Crawlers — welcome
 User-agent: GPTBot
 Allow: /

@@ -13,10 +13,12 @@ const DEFAULT_DESC = 'UCogNet (Universal Cognition Network) is a modular metacog
  * @param {string} path    – Path like "/safety" (used for canonical + og:url)
  * @param {string} [type]  – og:type, default "website"
  */
-export default function SEO({ title, description, path = '/', type = 'website' }) {
+export default function SEO({ title, description, path = '/', type = 'website', image, imageAlt }) {
   const fullTitle = title ? `${title} | UCogNet` : DEFAULT_TITLE;
   const desc = description || DEFAULT_DESC;
   const url = `${SITE}${path}`;
+  const ogImage = image ? `${SITE}${image}` : `${SITE}/benchmarks/ucognet_11_architecture_pyramid.png`;
+  const ogImageAlt = imageAlt || 'UCogNet Architecture Pyramid';
 
   return (
     <Helmet>
@@ -30,14 +32,14 @@ export default function SEO({ title, description, path = '/', type = 'website' }
       <meta property="og:url" content={url} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="UCogNet — Universal Cognition Network" />
-      <meta property="og:image" content={`${SITE}/benchmarks/ucognet_11_architecture_pyramid.png`} />
-      <meta property="og:image:alt" content="UCogNet Architecture Pyramid" />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:alt" content={ogImageAlt} />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={desc} />
-      <meta name="twitter:image" content={`${SITE}/benchmarks/ucognet_11_architecture_pyramid.png`} />
+      <meta name="twitter:image" content={ogImage} />
     </Helmet>
   );
 }

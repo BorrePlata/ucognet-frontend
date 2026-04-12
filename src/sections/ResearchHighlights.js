@@ -20,19 +20,24 @@ const plasmaTop = [
   { rank: '🥉', name: 'NeuOp-Transformer', score: '0.7293', tag: '2026', ours: false },
 ];
 
-/* ── BCI — BNCI2014001 headline ── */
+/* ── BCI — BNCI2014001 (Apr 2026 rigorous: 9 subj × 5 seeds) ── */
 const bciTop = [
-  { name: 'CSP+LDA', acc: '74.6%', pass: '8/9', ours: false },
-  { name: 'CSP+SVM', acc: '71.5%', pass: '8/9', ours: false },
-  { name: 'UCogNet', acc: '73.7%', pass: '9/9', ours: true },
+  { name: 'Riem-TS+LR',     acc: '76.0%', ci: '±4.1%', ours: false },
+  { name: 'Riem-MDM',        acc: '75.6%', ci: '±4.1%', ours: false },
+  { name: 'UCogNet-ResV2',   acc: '74.2%', ci: '±4.5%', ours: true },
+  { name: 'CSP+LDA',         acc: '74.2%', ci: '±4.5%', ours: false },
+  { name: 'ShallowCNN',      acc: '73.7%', ci: '±4.3%', ours: false },
+  { name: 'UCogNet-Std',     acc: '71.8%', ci: '±4.3%', ours: true },
+  { name: 'CSP+SVM',         acc: '71.5%', ci: '±4.7%', ours: false },
+  { name: 'EEGNet',          acc: '71.1%', ci: '±5.2%', ours: false },
 ];
 
 /* ── Stats row ── */
 const stats = [
   { value: '8',   label: 'Plasma controllers', color: palette.physics },
-  { value: '9/9', label: 'BCI subjects pass',  color: palette.bci },
-  { value: '6',   label: 'Validation seeds',   color: palette.warn },
-  { value: '7D',  label: 'Composite metric',   color: palette.highlight },
+  { value: '405', label: 'BCI evaluations',     color: palette.bci },
+  { value: '5',   label: 'Validation seeds',    color: palette.warn },
+  { value: '8',   label: 'Models compared',     color: palette.highlight },
 ];
 
 export default function ResearchHighlights() {
@@ -68,7 +73,8 @@ export default function ResearchHighlights() {
           </Box>
           <Typography variant="body1" sx={{ mb: 6, maxWidth: 680, fontSize: '1.08rem' }}>
             UCogNet evaluated on plasma turbulence control (Hasegawa-Wakatani 2D, 8 controllers,
-            7D composite, 6 seeds) and BCI neural decoding (BNCI2014001, 9 subjects, cross-session).
+            7D composite, 6 seeds) and BCI neural decoding (BNCI2014001, 9 subjects × 5 seeds,
+            360 cross-session + 45 LOSO evaluations, Wilcoxon paired tests with 95% CI).
             Same cognitive architecture — two scientific domains.
           </Typography>
         </motion.div>
@@ -221,7 +227,7 @@ export default function ResearchHighlights() {
                   <Typography variant="caption" sx={{
                     color: palette.bci, fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
                   }}>
-                    BNCI2014001 &bull; 9 subjects
+                    BNCI2014001 &bull; 9 subj × 5 seeds
                   </Typography>
                 </Box>
 
@@ -235,8 +241,8 @@ export default function ResearchHighlights() {
                   <thead>
                     <tr>
                       <th>Method</th>
-                      <th style={{ textAlign: 'right' }}>2-class acc.</th>
-                      <th style={{ textAlign: 'right' }}>4-class pass</th>
+                      <th style={{ textAlign: 'right' }}>Accuracy</th>
+                      <th style={{ textAlign: 'right' }}>95% CI</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -248,15 +254,18 @@ export default function ResearchHighlights() {
                         }}>
                           {r.name}
                         </td>
-                        <td style={{ textAlign: 'right', color: colors.textSecondary }}>{r.acc}</td>
                         <td style={{
                           textAlign: 'right', fontFamily: 'monospace',
                           color: r.ours ? palette.bci : colors.textSecondary,
                           fontWeight: r.ours ? 700 : 400,
-                          background: r.ours ? `${palette.bci}10` : 'transparent',
-                          borderRadius: r.ours ? '6px' : 0,
                         }}>
-                          {r.pass}
+                          {r.acc}
+                        </td>
+                        <td style={{
+                          textAlign: 'right', fontFamily: 'monospace',
+                          color: colors.textSecondary, fontSize: '0.75rem',
+                        }}>
+                          {r.ci}
                         </td>
                       </tr>
                     ))}
@@ -266,11 +275,11 @@ export default function ResearchHighlights() {
                 <Box sx={{ px: 3, py: 2, borderTop: `1px solid ${colors.border}`, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <Typography variant="body2" sx={{ fontSize: '0.78rem', mb: 2 }}>
                     <Box component="span" sx={{ color: palette.bci }}>●</Box>{' '}
-                    UCogNet passes threshold for <strong style={{ color: colors.textPrimary }}>all 9 subjects</strong> in 4-class
-                    (vs 8/9 for CSP+LDA and CSP+SVM). CKA analysis confirms distinct learned features.
+                    UCogNet-ResV2 ranks <strong style={{ color: colors.textPrimary }}>3rd of 8</strong> (74.2%)
+                    &mdash; statistically tied with CSP+LDA (p=0.97). Significantly outperforms CSP+SVM (p=0.006) and EEGNet (p=0.09). LOSO: 64.4%.
                   </Typography>
                   <Typography variant="caption" sx={{ color: colors.textSecondary, fontSize: '0.68rem' }}>
-                    Cross-session evaluation &bull; Motor imagery &bull; 4-class classification
+                    Cross-session &bull; 360 evaluations &bull; Wilcoxon paired test &bull; 95% CI
                   </Typography>
                 </Box>
               </Box>
@@ -291,7 +300,7 @@ export default function ResearchHighlights() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
               {[
                 { icon: '⚡', color: palette.physics, text: 'Plasma: UCogNet Legacy ranks 2nd of 8, beating both 2026 neural operator baselines. Enhanced variant wins 3/6 seeds.' },
-                { icon: '🧠', color: palette.bci, text: 'BCI: 9/9 subject pass rate in 4-class motor imagery, higher robustness than classical CSP pipelines.' },
+                { icon: '🧠', color: palette.bci, text: 'BCI: UCogNet-ResV2 ranks 3rd of 8 models (74.2%) across 360 evaluations with Wilcoxon paired tests. Significantly beats CSP+SVM and EEGNet.' },
                 { icon: '🔬', color: palette.warn, text: 'Cross-domain: single cognitive architecture operates both plasma turbulence control and neural decoding.' },
               ].map((f, i) => (
                 <Box key={i} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>

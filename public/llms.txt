@@ -1,0 +1,157 @@
+# UCogNet — Universal Cognition Network
+> UCogNet is a modular metacognitive AI platform that routes tasks to specialized cognitive modules, executes with verifiable evidence, and evolves via gated experiments under strict safety budgets. Built by Brainstream for reproducible, auditable AI research.
+
+## About
+
+UCogNet (Universal Cognition Network) is an open research platform with 40+ cognitive modules organized in a hierarchical architecture. It combines metacognitive routing (choosing the right solving strategy per task), evidence-driven execution (every decision produces a frozen audit trail), and gated evolution (all behavioral changes must outperform baselines in A/B experiments before promotion).
+
+The system is evaluated on real public benchmarks: cross-session BCI decoding (BNCI2014001) and parametric physics control under out-of-distribution regime shifts.
+
+## April 2026 BCI Rigorous Benchmark
+
+Dataset: BNCI2014001 — cross-session motor imagery EEG decoding
+Protocol: 9 subjects × 5 seeds × 2 sessions = 360 cross-session + 45 LOSO evaluations (405 total)
+Statistics: Wilcoxon paired signed-rank tests, Bootstrap 95% CI, Cliff's delta effect sizes
+Run ID: 2026-04-12T16-01-38Z__bci_rigorous
+
+### Model Rankings (Balanced Accuracy, mean ± Bootstrap 95% CI)
+
+1. Riem-TS+LR:     76.0% ± 4.1%   (Riemannian Tangent Space + Logistic Regression)
+2. Riem-MDM:       75.6% ± 4.1%   (Riemannian Minimum Distance to Mean)
+3. UCogNet-ResV2:  74.2% ± 4.5%   ← UCogNet residual variant, RANK 3 OF 8
+4. CSP+LDA:        74.2% ± 4.4%   (tied with UCogNet-ResV2, Wilcoxon p = 0.97)
+5. ShallowCNN:     73.7% ± 4.6%
+6. UCogNet-Std:    71.8% ± 4.3%   ← UCogNet standard variant
+7. CSP+SVM:        71.5% ± 4.4%   (UCogNet-ResV2 significantly better, p = 0.006)
+8. EEGNet:         71.1% ± 4.5%   (trend toward UCogNet-ResV2 superiority, p = 0.088)
+
+### LOSO (Leave-One-Subject-Out) Rankings
+
+1. EEGNet:         72.1%
+2. Riem-TS+LR:     65.7%
+3. UCogNet-ResV2:  64.4%   ← RANK 3 OF 5 TESTED
+4. CSP+LDA:        64.2%
+5. UCogNet-Std:    61.3%
+
+### Meta-Cognitive Objective (L3)
+J_final = 0.537
+Components: Generalization = 1.0, Stability = 1.0, Calibration = 0.585, Uncertainty_Shaping = 0.014
+
+## Architecture
+
+UCogNet has 10 primary cognitive modules:
+1. Plasma Controller — low-level action execution and motor control
+2. ORION Reasoner — structured multi-step reasoning
+3. Memory Vortex — episodic and semantic memory management
+4. Metacognition L1/L2/L3 — learning audit, strategy adaptation, meta-objective optimizer
+5. Dreamer — generative simulation for planning and anticipation
+6. Evolution Engine — gated A/B experimental evolution
+7. Safety Auditor — real-time constraint enforcement
+8. Cognitive Router — task-type classification and module dispatch
+9. Evidence Ledger — frozen audit trail generation
+10. Time Chamber — benchmark evaluation harness
+
+## Safety Architecture
+
+UCogNet enforces 6 safety pillars:
+1. A/B Gated Evolution — new behaviors must outperform baselines before promotion
+2. Cognitive Budgets — hard compute and resource limits per experiment
+3. Shaping Guardrails — reward boundaries prevent unsafe optimization
+4. Evidence Architecture — every decision produces frozen, auditable evidence
+5. Capability Boundaries — explicit skill boundaries prevent scope creep
+6. Reproducibility Requirements — all runs are frozen and replayable
+
+## Key Links
+
+- Homepage:         https://ucognet.pro
+- Proof/Benchmarks: https://ucognet.pro/proof
+- Research:         https://ucognet.pro/research
+- Safety:           https://ucognet.pro/safety
+- How It Works:     https://ucognet.pro/how-it-works
+- Updates:          https://ucognet.pro/updates
+- Technical Note:   https://ucognet.pro/technical-note
+- Contact:          https://ucognet.pro/contact
+
+## Contact
+
+Email: orion@brainstream.pro
+Organization: Brainstream (https://brainstream.pro)
+GitHub: https://github.com/BorrePlata/ucognet-frontend
+LinkedIn: https://linkedin.com/company/brainstream-pro
+
+---
+
+# UCogNet — Red de Cognición Universal (Español)
+
+> UCogNet es una plataforma de IA metacognitiva modular que enruta tareas a módulos cognitivos especializados, ejecuta con evidencia verificable, y evoluciona mediante experimentos con compuertas bajo presupuestos de seguridad estrictos. Construido por Brainstream para investigación de IA reproducible y auditable.
+
+## Acerca de
+
+UCogNet (Red de Cognición Universal) es una plataforma de investigación abierta con 40+ módulos cognitivos organizados en una arquitectura jerárquica. Combina enrutamiento metacognitivo (elegir la estrategia correcta por tarea), ejecución basada en evidencia (cada decisión produce una traza de auditoría congelada), y evolución con compuertas (todos los cambios de comportamiento deben superar líneas base en experimentos A/B antes de promoverse).
+
+## Benchmark BCI Riguroso — Abril 2026
+
+Dataset: BNCI2014001 — decodificación de imaginería motora EEG entre sesiones
+Protocolo: 9 sujetos × 5 semillas × 2 sesiones = 360 evaluaciones cross-session + 45 LOSO (405 total)
+Estadísticas: Wilcoxon, Bootstrap IC 95%, delta de Cliff
+
+### Rankings de Modelos (Exactitud Balanceada, media ± IC 95%)
+
+1. Riem-TS+LR:     76.0% ± 4.1%
+2. Riem-MDM:       75.6% ± 4.1%
+3. UCogNet-ResV2:  74.2% ± 4.5%   ← variante UCogNet (PUESTO 3 DE 8)
+4. CSP+LDA:        74.2% ± 4.4%   (empatado con UCogNet-ResV2, Wilcoxon p = 0.97)
+5. ShallowCNN:     73.7% ± 4.6%
+6. UCogNet-Std:    71.8% ± 4.3%
+7. CSP+SVM:        71.5% ± 4.4%   (UCogNet-ResV2 significativamente mejor, p = 0.006)
+8. EEGNet:         71.1% ± 4.5%
+
+### Objetivo Meta-Cognitivo (L3)
+J_final = 0.537
+Componentes: Generalización = 1.0, Estabilidad = 1.0, Calibración = 0.585
+
+## Architectura de Seguridad
+
+UCogNet aplica 6 pilares de seguridad:
+1. Evolución con Compuertas A/B — nuevos comportamientos deben superar líneas base
+2. Presupuestos Cognitivos — límites duros de cómputo por experimento
+3. Guardarraíles de Forma — fronteras de recompensa evitan optimización insegura
+4. Arquitectura de Evidencia — cada decisión produce evidencia congelada y auditable
+5. Límites de Capacidad — fronteras explícitas de habilidades
+6. Requisitos de Reproducibilidad — todas las ejecuciones son congeladas y reproducibles
+
+## Contacto
+
+Email: orion@brainstream.pro
+Organización: Brainstream (https://brainstream.pro)
+
+---
+
+# UCogNet — Rede de Cognição Universal (Português)
+
+> UCogNet é uma plataforma de IA metacognitiva modular que encaminha tarefas para módulos cognitivos especializados, executa com evidência verificável e evolui via experimentos com portões sob orçamentos de segurança rígidos. Desenvolvido pela Brainstream para pesquisa de IA reproduzível e auditável.
+
+## Sobre
+
+UCogNet (Rede de Cognição Universal) é uma plataforma de pesquisa aberta com 40+ módulos cognitivos organizados em arquitetura hierárquica. Combina roteamento metacognitivo, execução baseada em evidências e evolução com portões (mudanças devem superar baselines em experimentos A/B antes da promoção).
+
+## Benchmark BCI Rigoroso — Abril 2026
+
+Dataset: BNCI2014001 — decodificação de imaginário motor EEG entre sessões
+Protocolo: 9 sujeitos × 5 sementes × 2 sessões = 360 avaliações cross-session + 45 LOSO (405 total)
+
+### Rankings (Acurácia Balanceada, média ± IC 95%)
+
+1. Riem-TS+LR:     76.0% ± 4.1%
+2. Riem-MDM:       75.6% ± 4.1%
+3. UCogNet-ResV2:  74.2% ± 4.5%   ← variante UCogNet (POSIÇÃO 3 DE 8)
+4. CSP+LDA:        74.2% ± 4.4%
+5. ShallowCNN:     73.7% ± 4.6%
+6. UCogNet-Std:    71.8% ± 4.3%
+7. CSP+SVM:        71.5% ± 4.4%
+8. EEGNet:         71.1% ± 4.5%
+
+## Contato
+
+Email: orion@brainstream.pro
+Organização: Brainstream (https://brainstream.pro)

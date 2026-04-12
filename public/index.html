@@ -20,6 +20,18 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ucognet.pro" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="es_419" />
+    <meta property="og:locale:alternate" content="pt_BR" />
+    
+    <!-- hreflang: multi-region discovery -->
+    <link rel="alternate" hreflang="x-default" href="https://ucognet.pro/" />
+    <link rel="alternate" hreflang="en" href="https://ucognet.pro/" />
+    <link rel="alternate" hreflang="es" href="https://ucognet.pro/" />
+    <link rel="alternate" hreflang="pt" href="https://ucognet.pro/" />
+    
+    <!-- AI crawler discovery -->
+    <link rel="alternate" type="text/plain" title="LLMs.txt — AI-readable UCogNet summary" href="https://ucognet.pro/llms.txt" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -138,6 +150,99 @@
               }
             }
           ]
+        },
+        {
+          "@type": "Dataset",
+          "@id": "https://ucognet.pro/#bci-benchmark",
+          "name": "UCogNet BCI Benchmark Results (BNCI2014001)",
+          "description": "Cross-session motor imagery decoding benchmark using UCogNet's 40-module cognitive architecture. 9 subjects, 5 seeds, 8 decoder models (CSP+LDA, CSP+SVM, Riem-MDM, Riem-TS+LR, EEGNet, ShallowCNN, UCogNet-Std, UCogNet-ResV2). Evaluated with Wilcoxon signed-rank tests, Bootstrap 95% CI, and Cliff's delta effect sizes.",
+          "url": "https://ucognet.pro/proof",
+          "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+          "creator": { "@id": "https://ucognet.pro/#organization" },
+          "temporalCoverage": "2026-04",
+          "variableMeasured": [
+            {
+              "@type": "PropertyValue",
+              "name": "Riem-TS+LR balanced_accuracy",
+              "value": 76.0,
+              "unitText": "percent",
+              "description": "Mean balanced accuracy across 9 subjects × 5 seeds. Bootstrap 95% CI: ±4.1%. Rank 1 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Riem-MDM balanced_accuracy",
+              "value": 75.6,
+              "unitText": "percent",
+              "description": "Mean balanced accuracy across 9 subjects × 5 seeds. Bootstrap 95% CI: ±4.1%. Rank 2 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "UCogNet-ResV2 balanced_accuracy",
+              "value": 74.2,
+              "unitText": "percent",
+              "description": "UCogNet residual variant. Mean balanced accuracy across 9 subjects × 5 seeds. Bootstrap 95% CI: ±4.5%. Rank 3 of 8. Statistically tied with CSP+LDA (Wilcoxon p=0.97); significantly outperforms CSP+SVM (p=0.006) and EEGNet (trend, p=0.088)."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "CSP+LDA balanced_accuracy",
+              "value": 74.2,
+              "unitText": "percent",
+              "description": "Common Spatial Patterns + Linear Discriminant Analysis. Bootstrap 95% CI: ±4.4%. Rank 4 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "ShallowCNN balanced_accuracy",
+              "value": 73.7,
+              "unitText": "percent",
+              "description": "Shallow convolutional neural network. Bootstrap 95% CI: ±4.6%. Rank 5 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "UCogNet-Std balanced_accuracy",
+              "value": 71.8,
+              "unitText": "percent",
+              "description": "UCogNet standard variant. Bootstrap 95% CI: ±4.3%. Rank 6 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "CSP+SVM balanced_accuracy",
+              "value": 71.5,
+              "unitText": "percent",
+              "description": "Common Spatial Patterns + Support Vector Machine. Bootstrap 95% CI: ±4.4%. Rank 7 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "EEGNet balanced_accuracy",
+              "value": 71.1,
+              "unitText": "percent",
+              "description": "Compact CNN for EEG. Bootstrap 95% CI: ±4.5%. Rank 8 of 8."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "Total evaluations",
+              "value": 405,
+              "description": "360 cross-session + 45 LOSO evaluations. Run ID: 2026-04-12T16-01-38Z__bci_rigorous."
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "L3 meta-objective J_final",
+              "value": 0.537,
+              "description": "Metacognitive meta-objective score. Components: Generalization=1.0, Stability=1.0, Calibration=0.585, Uncertainty=0.014."
+            }
+          ],
+          "measurementTechnique": "Cross-session EEG motor imagery classification (Train Session 1, Test Session 2). Wilcoxon paired signed-rank tests, Bootstrap 5000 resamples 95% CI, Cliff's delta effect sizes.",
+          "keywords": ["BCI", "motor imagery", "EEG", "BNCI2014001", "cross-session", "cognitive architecture", "metacognition", "Riemannian geometry", "CSP", "EEGNet", "ShallowCNN", "Wilcoxon", "reproducible benchmarks"]
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://ucognet.pro/#software",
+          "name": "UCogNet",
+          "applicationCategory": "Scientific Software",
+          "applicationSubCategory": "Cognitive AI Platform",
+          "operatingSystem": "Linux, Windows (WSL2)",
+          "description": "Modular metacognitive AI platform with 40+ cognitive modules, gated evolution, and safety budgets for BCI decoding, physical control, and cross-domain reasoning.",
+          "creator": { "@id": "https://ucognet.pro/#organization" },
+          "url": "https://ucognet.pro"
         }
       ]
     }
@@ -158,8 +263,8 @@
           <li><strong>Evidence Architecture:</strong> Every decision produces frozen, auditable evidence trails</li>
           <li><strong>Reproducibility:</strong> 807 tests across 10 modules, all runs frozen and replayable</li>
         </ul>
-        <h2>Research</h2>
-        <p>Evaluated on BCI decoding (BNCI2014001, 9 subjects cross-session) and parametric physics control (5 OOD campaigns, 3 seeds). All benchmarks reproducible.</p>
+        <h2>Research — April 2026 Rigorous BCI Benchmark</h2>
+        <p>Rigorously evaluated on BCI decoding (BNCI2014001, 9 subjects × 5 seeds, 405 evaluations, Wilcoxon paired tests, Bootstrap 95% CI). UCogNet-ResV2: <strong>74.2% ± 4.5%</strong> balanced accuracy (rank 3 of 8 models, vs Riem-TS+LR 76.0%, Riem-MDM 75.6%,  CSP+LDA 74.2%, ShallowCNN 73.7%, EEGNet 71.1%). Statistically tied with CSP+LDA (p=0.97); significantly outperforms CSP+SVM (p=0.006). Also evaluated on parametric physics control (5 OOD campaigns). All benchmarks frozen and reproducible.</p>
         <h2>Contact</h2>
         <p>Email: <a href="mailto:orion@brainstream.pro">orion@brainstream.pro</a></p>
         <p>A product of <a href="https://brainstream.pro">Brainstream</a>.</p>

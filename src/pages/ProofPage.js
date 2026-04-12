@@ -7,8 +7,8 @@ export default function ProofPage() {
   return (
     <PageTransition>
       <SEO
-        title="Proof — 807 Reproducible Benchmark Tests"
-        description="Frozen benchmark runs, reproducible test suites, and verifiable evidence from all 10 UCogNet cognitive modules. Every run is sealed with SHA-256 hashes."
+        title="Proof — Reproducible Benchmarks & 405 BCI Evaluations"
+        description="Frozen benchmark runs, reproducible test suites, and verifiable evidence. BCI rigorous evaluation: 8 models, 9 subjects × 5 seeds, Wilcoxon paired tests with 95% CI."
         path="/proof"
       />
       <Proof />

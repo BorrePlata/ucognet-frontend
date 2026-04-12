@@ -5,13 +5,22 @@
     <link>https://ucognet.pro</link>
     <description>Research updates from the UCogNet metacognitive AI platform. Gated evolution, safety budgets, and reproducible benchmarks.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2026 16:00:00 GMT</lastBuildDate>
     <atom:link href="https://ucognet.pro/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://ucognet.pro/ucognet-icon.svg</url>
       <title>UCogNet</title>
       <link>https://ucognet.pro</link>
     </image>
+
+    <item>
+      <title>BCI Rigorous Benchmark: 8 Models, 405 Evaluations, Wilcoxon Paired Tests (April 2026)</title>
+      <link>https://ucognet.pro/proof</link>
+      <guid isPermaLink="true">https://ucognet.pro/proof#bci-rigorous-2026-04</guid>
+      <pubDate>Sun, 12 Apr 2026 16:00:00 GMT</pubDate>
+      <description>Full 8-model BCI benchmark on BNCI2014001 (9 subjects × 5 seeds, 360 cross-session + 45 LOSO = 405 evaluations). UCogNet-ResV2 achieves 74.2% ± 4.5% balanced accuracy (rank 3/8), statistically tied with CSP+LDA (Wilcoxon p=0.97) and significantly outperforming CSP+SVM (p=0.006). Models compared: Riem-TS+LR 76.0%, Riem-MDM 75.6%, UCogNet-ResV2 74.2%, CSP+LDA 74.2%, ShallowCNN 73.7%, UCogNet-Std 71.8%, CSP+SVM 71.5%, EEGNet 71.1%. L3 meta-objective J=0.537.</description>
+      <dc:creator>UCogNet Lab</dc:creator>
+    </item>
 
     <item>
       <title>UCogNet Safety Architecture: 6 Pillars for Gated AI Evolution</title>
@@ -27,7 +36,7 @@
       <link>https://ucognet.pro/research</link>
       <guid isPermaLink="true">https://ucognet.pro/research</guid>
       <pubDate>Sun, 23 Mar 2026 00:00:00 GMT</pubDate>
-      <description>UCogNet evaluated on BNCI2014001 BCI decoding (9 subjects, cross-session, 9/9 threshold pass) and parametric physics control (Module 5, 5 OOD campaigns, cognitive 0.351 vs PID 0.090 under regime shifts).</description>
+      <description>UCogNet evaluated on BNCI2014001 BCI decoding (9 subjects, cross-session) and parametric physics control (Module 5, 5 OOD campaigns, cognitive controller outperforms PID and LQR baselines under regime shifts). Superseded by the rigorous April 2026 run with 8-model comparison and Wilcoxon statistics.</description>
       <dc:creator>UCogNet Lab</dc:creator>
     </item>
 
