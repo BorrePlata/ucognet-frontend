@@ -13,11 +13,13 @@ const palette = {
   ucognet: '#10b981',
 };
 
-/* ── Plasma — top-3 single-seed (seed=42) ── */
+/* ── Plasma — 6-seed multi-run comparison (95% CI, t-dist. n=6, lower = better) ──
+ * Neural operator baselines are analytical surrogate implementations of their
+ * architectural families — not trained model checkpoints from the cited papers. */
 const plasmaTop = [
-  { rank: '🥇', name: 'FNO Surrogate',    score: '0.7187', tag: null,   ours: false },
-  { rank: '🥈', name: 'UCogNet Legacy',    score: '0.7253', tag: null,   ours: true },
-  { rank: '🥉', name: 'NeuOp-Transformer', score: '0.7293', tag: '2026', ours: false },
+  { rank: '🥇', name: 'UCogNet Enhanced', score: '0.7219', ci: '±0.015', tag: null,   ours: true },
+  { rank: '🥈', name: 'NeuOp-Transf. ‡', score: '0.7285', ci: '±0.005', tag: '2026', ours: false },
+  { rank: '🥉', name: 'UCogNet Legacy',   score: '0.7311', ci: '±0.022', tag: null,   ours: true },
 ];
 
 /* ── BCI — BNCI2014001 (Apr 2026 rigorous: 9 subj × 5 seeds) ── */
@@ -139,7 +141,7 @@ export default function ResearchHighlights() {
                   <Typography variant="caption" sx={{
                     color: palette.physics, fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase',
                   }}>
-                    HW2D &bull; Benchmark V3
+                  HW2D &bull; Benchmark V3 &bull; 6-seed
                   </Typography>
                 </Box>
 
@@ -154,7 +156,8 @@ export default function ResearchHighlights() {
                     <tr>
                       <th style={{ width: 32 }}>#</th>
                       <th>Controller</th>
-                      <th style={{ textAlign: 'right' }}>Composite v3</th>
+                      <th style={{ textAlign: 'right' }}>Mean</th>
+                      <th style={{ textAlign: 'right' }}>95% CI</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -182,6 +185,9 @@ export default function ResearchHighlights() {
                         }}>
                           {r.score}
                         </td>
+                        <td style={{ textAlign: 'right', fontFamily: 'monospace', fontSize: '0.72rem', color: colors.textSecondary }}>
+                          {r.ci}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -190,12 +196,12 @@ export default function ResearchHighlights() {
                 <Box sx={{ px: 3, py: 2, borderTop: `1px solid ${colors.border}`, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <Typography variant="body2" sx={{ fontSize: '0.78rem', mb: 2 }}>
                     <Box component="span" sx={{ color: palette.ucognet }}>●</Box>{' '}
-                    <strong style={{ color: colors.textPrimary }}>2nd of 8</strong> on single-seed
-                    &bull; <strong style={{ color: colors.textPrimary }}>Best multi-seed mean</strong> (UCogNet Enhanced, 0.7219)
-                    &bull; Beats NeuOp-Transformer &amp; FI-Conv (2026 SOTA)
+                    UCogNet Enhanced: <strong style={{ color: colors.textPrimary }}>lowest multi-seed mean (0.7219 ± 0.015)</strong>.
+                    No pairwise difference statistically significant (p&gt;0.05, n=6).
+                    ‡ Neural operator baselines are surrogate approximations.
                   </Typography>
                   <Typography variant="caption" sx={{ color: colors.textSecondary, fontSize: '0.68rem' }}>
-                    7D composite &bull; 6 seeds &bull; paired t-test &bull; 3 peer-reviewed references
+                    7D composite &bull; 6 seeds &bull; 95% CI (t-dist.) &bull; surrogates disclosed
                   </Typography>
                 </Box>
               </Box>
