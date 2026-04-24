@@ -8,6 +8,7 @@ import { LightboxProvider } from './components/ImageLightbox';
 import ScrollToTop from './components/ScrollToTop';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ProtectedRoute from './components/ProtectedRoute';
 
 /* ── Code-split pages (reduces initial JS bundle ~83 KiB) ── */
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -19,6 +20,10 @@ const ResearchesPage = lazy(() => import('./pages/ResearchesPage'));
 const UpdatesPage = lazy(() => import('./pages/UpdatesPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const TechnicalNote = lazy(() => import('./pages/TechnicalNote'));
+const LabPage = lazy(() => import('./pages/LabPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const AstrophysicsPage = lazy(() => import('./pages/AstrophysicsPage'));
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -34,8 +39,29 @@ function AnimatedRoutes() {
         <Route path="/updates" element={<UpdatesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/technical-note" element={<TechnicalNote />} />
+        <Route path="/lab" element={<LabPage />} />
+        <Route path="/applications/astrophysics" element={<AstrophysicsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute><DashboardPage /></ProtectedRoute>
+        } />
       </Routes>
     </AnimatePresence>
+  );
+}
+
+function LayoutWrapper() {
+  const location = useLocation();
+  const isLab = location.pathname === '/lab';
+  const isDashboard = location.pathname === '/dashboard';
+  return (
+    <>
+      {!isLab && !isDashboard && <Navbar />}
+      <Suspense fallback={<Box sx={{ minHeight: '100vh', background: '#060B14' }} />}>
+        <AnimatedRoutes />
+      </Suspense>
+      {!isLab && !isDashboard && <Footer />}
+    </>
   );
 }
 
@@ -47,11 +73,7 @@ function App() {
       <LightboxProvider>
         <Router>
           <ScrollToTop />
-          <Navbar />
-          <Suspense fallback={<Box sx={{ minHeight: '100vh', background: '#060B14' }} />}>
-            <AnimatedRoutes />
-          </Suspense>
-          <Footer />
+          <LayoutWrapper />
         </Router>
       </LightboxProvider>
     </ThemeProvider>

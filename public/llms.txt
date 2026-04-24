@@ -1,11 +1,37 @@
 # UCogNet — Universal Cognition Network
-> UCogNet is a modular metacognitive AI platform that routes tasks to specialized cognitive modules, executes with verifiable evidence, and evolves via gated experiments under strict safety budgets. Built by Brainstream for reproducible, auditable AI research.
+> UCogNet is a modular metacognitive AI platform that routes tasks to specialized cognitive modules, executes with verifiable evidence, and evolves via gated experiments under strict safety budgets. Built by Brainstream for reproducible, auditable AI research. Applications include Brain-Computer Interface decoding, plasma turbulence control, and astrophysical anomaly detection (CMB and radio SETI).
 
 ## About
 
 UCogNet (Universal Cognition Network) is an open research platform with 40+ cognitive modules organized in a hierarchical architecture. It combines metacognitive routing (choosing the right solving strategy per task), evidence-driven execution (every decision produces a frozen audit trail), and gated evolution (all behavioral changes must outperform baselines in A/B experiments before promotion).
 
-The system is evaluated on real public benchmarks: cross-session BCI decoding (BNCI2014001) and parametric physics control under out-of-distribution regime shifts.
+The system is evaluated on real public benchmarks: cross-session BCI decoding (BNCI2014001), parametric physics control under out-of-distribution regime shifts, and astrophysical anomaly detection via the Cambioides module (in progress, target MICAI 2026 / Springer LNCS).
+
+## Cambioides — C₃-symmetric chaos regulator for astrophysical anomaly detection (Apr 2026)
+
+Landing page: https://ucognet.pro/applications/astrophysics
+
+Cambioides is a new UCogNet module implementing the Thomas (1999) cyclically-symmetric attractor — a minimal continuous RNN of three neurons with σ = sin(·):
+
+    ẋ = sin(y) − b·x
+    ẏ = sin(z) − b·y
+    ż = sin(x) − b·z
+
+It provides a THIRD NULL MODEL — beyond Gaussian noise and structured signal — against which anomalies in CMB patches (Planck SMICA) and radio SETI spectrograms (Breakthrough Listen) can be discriminated.
+
+Properties (numerically verified):
+- C₃ symmetry: invariant under (x,y,z) ↦ (y,z,x)
+- Strict dissipativity: ∇·F = −3b, phase volume contracts as V(t) = V₀·e^(−3bt)
+- Lyapunov spectrum at b = 0.18: λ₁ = +0.237, λ₂ ≈ 0, λ₃ = −0.790
+- Kaplan-Yorke fractal dimension: D_KY = 2 + λ₁/|λ₃| ≈ 2.31
+
+Planned experiments (Q2–Q3 2026):
+- CMB: Planck SMICA Nside=256 HEALPix tile scanner; recover Cold Spot and low-ℓ alignment as sanity checks; ROC-AUC vs KS-test and CNN baselines.
+- SETI: Breakthrough Listen GBT filterbank spectrograms; detect injected CW tones and Voyager 1 telemetry; blind re-scoring of published technosignature candidates.
+
+Why it matters for surveys (Gaia DR4/5, 4MOST, Planck legacy, Breakthrough Listen): structured-chaos null models are orthogonal to both Gaussianity tests and CNN detectors, giving a principled D_KY-based anomaly scale for pattern-recognition at survey scale.
+
+Author background: prior experience with CMB and SETI data plus UCogNet as reproducible infrastructure. Looking for PhD, postdoc, and survey-team collaborations where ML pattern-recognition meets survey spectroscopy.
 
 ## April 2026 BCI Rigorous Benchmark
 
@@ -63,14 +89,16 @@ UCogNet enforces 6 safety pillars:
 
 ## Key Links
 
-- Homepage:         https://ucognet.pro
-- Proof/Benchmarks: https://ucognet.pro/proof
-- Research:         https://ucognet.pro/research
-- Safety:           https://ucognet.pro/safety
-- How It Works:     https://ucognet.pro/how-it-works
-- Updates:          https://ucognet.pro/updates
-- Technical Note:   https://ucognet.pro/technical-note
-- Contact:          https://ucognet.pro/contact
+- Homepage:                 https://ucognet.pro
+- Proof/Benchmarks:         https://ucognet.pro/proof
+- Research:                 https://ucognet.pro/research
+- Researches (deep-dive):   https://ucognet.pro/researches
+- Astrophysics application: https://ucognet.pro/applications/astrophysics
+- Safety:                   https://ucognet.pro/safety
+- How It Works:             https://ucognet.pro/how-it-works
+- Updates:                  https://ucognet.pro/updates
+- Technical Note:           https://ucognet.pro/technical-note
+- Contact:                  https://ucognet.pro/contact
 
 ## Contact
 

@@ -6,6 +6,24 @@ import { colors } from '../theme';
 const milestones = [
   {
     date: 'Apr 2026',
+    title: 'Cambioides module — C₃-symmetric chaos regulator atop Singularity',
+    desc: 'New cognitive layer sitting above the Singularity: a Thomas cyclically-symmetric attractor (ẋ = sin(y) − bx + cyclic permutations) that closes a dissipative feedback loop with the output. ∇·F = −3b guarantees volume contraction; verified Lyapunov spectrum λ₁ = +0.24, λ₃ = −0.79, Kaplan–Yorke D_KY ≈ 2.31. Regulates chaos between layers without destroying cyclic information topology.',
+    active: true,
+  },
+  {
+    date: 'Apr 2026',
+    title: 'Quantum vs Classical BCI run — 7 models, Transfer-State metrics',
+    desc: 'Full cross-session + LOSO + Euclidean Alignment + session-drift MMD (tangent + latent) + inter-model RSA on BNCI2014001. Quantum embeddings show no significant advantage (Riem-TS+Q: +0.15 pp, p=0.50; UCogNet-ResV2-Q: −2.9 pp, p=0.07, medium effect) — an honest negative result on current quantum feature mapping. UCogNet-Sing debuts at rank 4 (73.8 %).',
+    active: true,
+  },
+  {
+    date: 'Apr 2026',
+    title: 'Transfer-State benchmark infrastructure — LOSO + EA + MMD + RSA',
+    desc: 'Rigorous cross-subject evaluation framework added to the benchmark: Leave-One-Subject-Out with pooled training, Rodrigues et al. Euclidean Alignment, MMD session drift (tangent-space + z-space), Kaplan–Yorke fractal dimension, inter-model RSA across Spearman-ranked subject profiles. Reveals that UCogNet-Sing latent space has 2.1× higher session drift than Riemannian tangent space (MMD_z = 0.76 vs MMD_ts = 0.36) — a measurable weakness that guides future encoder design.',
+    active: true,
+  },
+  {
+    date: 'Apr 2026',
     title: 'BCI Rigorous Benchmark — 8 models, 405 evaluations',
     desc: 'Full multi-objective evaluation: 9 subjects × 5 seeds × 8 models = 360 cross-session + 45 LOSO. Riem-TS+LR tops at 76.0%; UCogNet-ResV2 ranks 3rd (74.2%, p=0.97 vs CSP+LDA). Wilcoxon paired tests, 95% CI, Cliff\'s delta effect sizes.',
     active: true,

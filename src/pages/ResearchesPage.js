@@ -75,14 +75,24 @@ const plasmaRefs = [
    ════════════════════════════════════════════════════════ */
 
 const bciRows = [
-  { name: 'Riem-TS+LR',        acc: '76.0 %', ci: '±4.1 %', ours: false },
-  { name: 'Riem-MDM',           acc: '75.6 %', ci: '±4.1 %', ours: false },
-  { name: 'UCogNet-ResV2',      acc: '74.2 %', ci: '±4.5 %', ours: true  },
-  { name: 'CSP+LDA',            acc: '74.2 %', ci: '±4.4 %', ours: false },
-  { name: 'ShallowCNN',         acc: '73.7 %', ci: '±4.6 %', ours: false },
-  { name: 'UCogNet-Std',        acc: '71.8 %', ci: '±4.3 %', ours: true  },
-  { name: 'CSP+SVM',            acc: '71.5 %', ci: '±4.4 %', ours: false },
-  { name: 'EEGNet',             acc: '71.1 %', ci: '±4.5 %', ours: false },
+  { name: 'Riem-TS+Q',          acc: '76.2 %', ci: '±4.0 %', ours: false, kind: 'quantum'     },
+  { name: 'Riem-TS+LR',         acc: '76.0 %', ci: '±4.1 %', ours: false, kind: 'classical'   },
+  { name: 'Riem-MDM',           acc: '75.6 %', ci: '±4.1 %', ours: false, kind: 'classical'   },
+  { name: 'UCogNet-ResV2',      acc: '74.2 %', ci: '±4.5 %', ours: true,  kind: 'cognitive'   },
+  { name: 'CSP+LDA',            acc: '74.2 %', ci: '±4.4 %', ours: false, kind: 'classical'   },
+  { name: 'UCogNet-Sing',       acc: '73.8 %', ci: '±4.5 %', ours: true,  kind: 'cognitive'   },
+  { name: 'ShallowCNN',         acc: '73.7 %', ci: '±4.6 %', ours: false, kind: 'deep'        },
+  { name: 'UCogNet-Std',        acc: '71.8 %', ci: '±4.3 %', ours: true,  kind: 'cognitive'   },
+  { name: 'CSP+SVM',            acc: '71.5 %', ci: '±4.4 %', ours: false, kind: 'classical'   },
+  { name: 'UCogNet-ResV2+Q',    acc: '71.3 %', ci: '±3.9 %', ours: true,  kind: 'quantum'     },
+  { name: 'EEGNet',             acc: '71.1 %', ci: '±4.5 %', ours: false, kind: 'deep'        },
+  { name: 'UCogNet-Std+Q',      acc: '69.4 %', ci: '±4.1 %', ours: true,  kind: 'quantum'     },
+];
+
+// Transfer-State (LOSO + EA + MMD + RSA) — Apr 2026 run
+const transferRows = [
+  { name: 'Riem-TS+LR',    loso: '65.7 %', loso_ea: '65.7 %', mmd_lat: '0.361', note: 'baseline' },
+  { name: 'UCogNet-Sing',  loso: '60.9 %', loso_ea: '—',      mmd_lat: '0.764', note: 'own z-space (MMD_z)' },
 ];
 
 const bciDetails = [
@@ -90,9 +100,10 @@ const bciDetails = [
   { label: 'Paradigm',   value: '2-class motor imagery (left hand vs right hand)' },
   { label: 'Subjects',   value: '9 healthy adults, 5 seeds each' },
   { label: 'Protocol',   value: 'Train Session 1 → Test Session 2 (strict cross-session)' },
-  { label: 'Evaluations', value: '360 cross-session + 45 LOSO = 405 total' },
+  { label: 'Evaluations', value: '540 cross-session + 45 LOSO = 585 total (2026-04-23 run)' },
   { label: 'Statistics', value: 'Wilcoxon paired signed-rank + Bootstrap 95% CI + Cliff’s δ' },
-  { label: 'Run ID',     value: '2026-04-12T16-01-38Z__bci_rigorous' },
+  { label: 'Transfer',   value: 'LOSO + Euclidean Alignment + MMD session drift + inter-model RSA' },
+  { label: 'Run ID',     value: '2026-04-23T21-11-05Z__quantum_vs_classical' },
   { label: 'Reference',  value: 'Tangermann et al., “Review of BCI Competition IV,” Front. Neurosci. 2012.' },
 ];
 
@@ -288,7 +299,7 @@ function PlasmaSection() {
             <CardFooter>
               <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
                 <Box component="span" sx={{ color: palette.ucognet }}>●</Box>{' '}
-                UCogNet Legacy ranks <strong style={{ color: colors.textPrimary }}>2nd on this single run (seed = 42)</strong> with highest
+                UCogNet Legacy ranks <strong style={{ color: colors.textPrimary }}>2nd on this single run (seed = 42)</strong> with highest
                 spectral fidelity (0.927). ✱ FNO, FI-Conv, NeuOp-Transformer are analytical surrogate implementations
                 — not trained model checkpoints from those papers. See multi-seed table for statistical summary.
               </Typography>
@@ -301,7 +312,7 @@ function PlasmaSection() {
             <DataTable
               headers={[
                 { label: 'Controller' },
-                { label: 'Mean ± 95% CI', style: { textAlign: 'right' } },
+                { label: 'Mean ± 95% CI', style: { textAlign: 'right' } },
                 { label: 'Wins',          style: { textAlign: 'right' } },
               ]}
               rows={multiSeedRows.map((r) => (
@@ -342,9 +353,9 @@ function PlasmaSection() {
             <CardFooter>
               <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
                 <Box component="span" sx={{ color: palette.ucognet }}>●</Box>{' '}
-                UCogNet Enhanced: lowest observed mean (0.7219 ± 0.015).
+                UCogNet Enhanced: lowest observed mean (0.7219 ± 0.015).
                 CIs overlap for all pairs; no pairwise difference is statistically
-                significant (e.g. Enhanced vs Legacy: t = −0.779, p = 0.471, n = 6).
+                significant (e.g. Enhanced vs Legacy: t = −0.779, p = 0.471, n = 6).
                 Win count (3/6) is descriptive.
               </Typography>
             </CardFooter>
@@ -449,10 +460,45 @@ function BCISection() {
             <CardFooter>
               <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
                 <Box component="span" sx={{ color: palette.bci }}>●</Box>{' '}
-                UCogNet-ResV2 <strong style={{ color: colors.textPrimary }}>rank 3 of 8 (74.2 ± 4.5 %)</strong>,
-                statistically tied with CSP+LDA (Wilcoxon p = 0.97);
-                significantly outperforms CSP+SVM (p = 0.006) and trends vs EEGNet (p = 0.088).
-                Riemannian methods rank 1st–2nd; UCogNet is top neural / cognitive approach.
+                UCogNet-ResV2 <strong style={{ color: colors.textPrimary }}>rank 4 of 12 (74.2 ± 4.5 %)</strong>,
+                statistically tied with CSP+LDA (Wilcoxon p = 0.97) and within noise of the
+                Riemannian baseline (−1.8 pp, overlapping 95 % CIs).
+                Quantum embeddings do not improve UCogNet variants — honest negative result
+                (Riem-TS+Q: +0.15 pp p = 0.50; UCogNet-ResV2+Q: −2.9 pp p = 0.07, medium effect).
+              </Typography>
+            </CardFooter>
+          </Card>
+
+          {/* Transfer-State (LOSO + MMD) */}
+          <Card sx={{ mb: 3 }}>
+            <CardHeader title="Transfer-State Analysis" subtitle="LOSO + EA + MMD session drift" subtitleColor={palette.bci} icon="🔀" />
+            <DataTable
+              headers={[
+                { label: 'Method' },
+                { label: 'LOSO',       style: { textAlign: 'right' } },
+                { label: 'LOSO + EA',  style: { textAlign: 'right' } },
+                { label: 'MMD drift',  style: { textAlign: 'right' } },
+                { label: 'Note',       style: { textAlign: 'right' } },
+              ]}
+              rows={transferRows.map((r) => (
+                <tr key={r.name}>
+                  <td style={{ color: r.name.startsWith('UCogNet') ? palette.bci : colors.textPrimary, fontWeight: r.name.startsWith('UCogNet') ? 700 : 400 }}>
+                    {r.name}
+                  </td>
+                  <td style={{ textAlign: 'right', fontFamily: 'monospace', color: colors.textSecondary }}>{r.loso}</td>
+                  <td style={{ textAlign: 'right', fontFamily: 'monospace', color: colors.textSecondary }}>{r.loso_ea}</td>
+                  <td style={{ textAlign: 'right', fontFamily: 'monospace', color: colors.textSecondary }}>{r.mmd_lat}</td>
+                  <td style={{ textAlign: 'right', fontSize: '0.72rem', color: colors.textSecondary }}>{r.note}</td>
+                </tr>
+              ))}
+            />
+            <CardFooter>
+              <Typography variant="body2" sx={{ fontSize: '0.78rem' }}>
+                <Box component="span" sx={{ color: palette.bci }}>●</Box>{' '}
+                <strong style={{ color: colors.textPrimary }}>LOSO cross-subject:</strong> Riemannian baseline wins by 4.9 pp — the
+                true cross-subject gap. <strong style={{ color: colors.textPrimary }}>MMD session drift:</strong> UCogNet-Sing
+                z-space is 2.1× less stable than tangent space (MMD_z = 0.76 vs MMD_ts = 0.36) — the encoder memorises
+                session-specific artefacts, identified as a concrete design target.
               </Typography>
             </CardFooter>
           </Card>
@@ -465,10 +511,11 @@ function BCISection() {
               </Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
                 {[
-                  { icon: '🧐', text: 'Rank 3 of 8: UCogNet-ResV2 achieves 74.2 ± 4.5 % balanced accuracy, statistically tied with CSP+LDA (Wilcoxon p = 0.97). No significant difference from top-2 Riemannian methods.' },
-                  { icon: '📊', text: 'Statistical rigour: Wilcoxon paired tests, Bootstrap 5000-resample 95 % CI, and Cliff’s delta effect sizes across 9 × 5 = 45 paired observations.' },
-                  { icon: '⚡', text: 'Outperforms classical: significantly better than CSP+SVM (p = 0.006, medium effect). Trend vs EEGNet (p = 0.088): 1.6 pp advantage with overlapping CIs.' },
-                  { icon: '🔄', text: 'Cross-session: strict protocol (Train Session 1 → Test Session 2) tests day-to-day neural variability generalisation — same architecture, no task-specific tuning.' },
+                  { icon: '🧐', text: 'Competitive, not dominant: UCogNet-ResV2 / Sing rank within the top 6 of 12 models, within noise (±4.5 pp) of the Riemannian baseline. Expected for a general cognitive architecture on a specialised EEG task — baseline-level feasibility confirmed.' },
+                  { icon: '⚛️', text: 'Quantum embedding null result: Riem-TS+Q essentially ties Riem-TS+LR (+0.15 pp, p=0.50); UCogNet-ResV2+Q loses 2.9 pp with medium effect (p=0.07). Current quantum feature-map adds noise, not information. Reported honestly; flagged for redesign.' },
+                  { icon: '🔀', text: 'Cross-subject transfer (LOSO): Riemannian-TS wins by 4.9 pp — honest generalisation gap. Euclidean Alignment gave +0.00 pp in the pooled setup (per-subject alignment flagged as the correct follow-up implementation).' },
+                  { icon: '🪞', text: 'Session drift identified: MMD in UCogNet latent z-space is 2.1× higher than in Riemannian tangent space (0.76 vs 0.36) — the encoder memorises session-specific artefacts. A measurable, actionable design target.' },
+                  { icon: '📊', text: 'Statistical rigour: Wilcoxon paired tests, Bootstrap 5000-resample 95 % CI, Cliff’s delta, inter-model RSA across 9 × 5 = 45 paired observations. Every comparison fully reported, including negative results.' },
                 ].map((f, i) => (
                   <Box key={i} sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
                     <Typography sx={{ fontSize: '0.85rem', mt: '1px' }}>{f.icon}</Typography>
@@ -737,9 +784,49 @@ export default function ResearchesPage() {
             </motion.div>
           </AnimatePresence>
 
+          {/* Upcoming domain — Astrophysics */}
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <Box sx={{
+              mt: 6, p: 3, borderRadius: '14px',
+              background: `linear-gradient(135deg, ${colors.surface} 0%, rgba(224,122,47,0.05) 100%)`,
+              border: `1px solid ${colors.accentWarm}30`,
+              display: 'flex', flexDirection: { xs: 'column', md: 'row' },
+              alignItems: { md: 'center' }, justifyContent: 'space-between', gap: 2,
+            }}>
+              <Box>
+                <Typography variant="caption" sx={{
+                  color: colors.accentWarm, fontWeight: 700, letterSpacing: '0.1em',
+                  textTransform: 'uppercase', fontSize: '0.7rem',
+                }}>
+                  Upcoming domain · Q2–Q3 2026
+                </Typography>
+                <Typography variant="h5" sx={{ mt: 0.4, mb: 0.6, color: colors.textPrimary, fontSize: '1.1rem' }}>
+                  Astrophysical anomaly detection — Cambioides as a null model
+                </Typography>
+                <Typography variant="body2" sx={{ fontSize: '0.85rem', maxWidth: 680 }}>
+                  Applying the new C₃-symmetric Thomas-attractor module to CMB patches (Planck SMICA)
+                  and radio SETI spectrograms (Breakthrough Listen) — a third null model beyond
+                  Gaussian noise and structured signal, with an explicit fractal scale (D_KY ≈ 2.31).
+                </Typography>
+              </Box>
+              <Button
+                component={RouterLink}
+                to="/applications/astrophysics"
+                variant="outlined"
+                sx={{
+                  px: 3, borderColor: `${colors.accentWarm}60`, color: colors.accentWarm,
+                  whiteSpace: 'nowrap',
+                  '&:hover': { borderColor: colors.accentWarm, background: `${colors.accentWarm}08` },
+                }}
+              >
+                Read the proposal →
+              </Button>
+            </Box>
+          </motion.div>
+
           {/* Bottom CTA */}
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <Box sx={{ mt: 6, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+            <Box sx={{ mt: 4, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
               <Button component={RouterLink} to="/research" variant="outlined" sx={{ px: 3 }}>
                 Research visualizations
               </Button>
